@@ -37,5 +37,13 @@ class LoginActivity : AppCompatActivity() {
 
             }
         })
+
+        var newUserButton = findViewById<Button>(R.id.newUser)
+        newUserButton.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(p0: View?) {
+                val intent = Intent(this@LoginActivity, DatosActivity::class.java)
+                startActivity(intent)
+            }
+        })
     }
 }

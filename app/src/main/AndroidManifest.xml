@@ -15,7 +15,6 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-
         </activity>
         <activity android:name=".SplashActivity">
             <intent-filter>
@@ -25,6 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity">
+        </activity>
+        <activity android:name=".DatosActivity">
         </activity>
     </application>
 
