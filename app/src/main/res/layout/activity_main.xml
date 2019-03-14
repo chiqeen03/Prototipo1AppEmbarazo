@@ -98,7 +98,7 @@
             <Button
                     android:text="Dieta"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/DietaButton" android:layout_weight="1"/>
+                    android:layout_height="wrap_content" android:id="@+id/Dietabttn" android:layout_weight="1"/>
             <Button
                     android:text="Ejercicios"
                     android:layout_width="wrap_content"
