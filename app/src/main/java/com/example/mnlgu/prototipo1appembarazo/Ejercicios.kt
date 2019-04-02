@@ -12,13 +12,7 @@ class Ejercicios : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ejercicios)
 
-        var regresarButton = findViewById<Button>(R.id.Regresar)
-        regresarButton.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(p0: View?){
-                val intent = Intent(this@Ejercicios, MainActivity::class.java)
-                startActivity(intent)
-            }
-        })
+        supportActionBar?.hide()
     }
 
     /*var newUserButton = findViewById<Button>(R.id.newUser)

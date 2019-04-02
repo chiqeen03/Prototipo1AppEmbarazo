@@ -22,6 +22,9 @@
                 android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/trimestre" android:textSize="24sp"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/empty"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:gravity="center"
@@ -73,6 +76,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/calorias2" android:layout_weight="1"/>
         </LinearLayout>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/empty2"/>
         <TextView
                 android:text="He cambiado! Mira como me veo hoy, mamá:"
                 android:gravity="center"
