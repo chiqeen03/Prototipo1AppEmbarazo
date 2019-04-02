@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import com.example.mnlgu.prototipo1appembarazo.MainActivity
 import com.example.mnlgu.prototipo1appembarazo.R
 import com.example.mnlgu.prototipo1appembarazo.Tabs.MainTabsActivity
 

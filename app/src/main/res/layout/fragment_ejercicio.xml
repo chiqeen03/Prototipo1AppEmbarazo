@@ -2,13 +2,37 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
-             android:layout_height="match_parent"
+             android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
              tools:context=".Fragments.FragmentEjercicios">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.481"
+            app:layout_constraintVertical_bias="0.052">
+        <TextView
+                android:text="Ejercicios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" tools:layout_editor_absoluteY="211dp"
+                tools:layout_editor_absoluteX="142dp" android:id="@+id/Title_ejercicios_txtview"
+                android:textSize="24sp" android:textAlignment="center"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="114dp" app:srcCompat="@drawable/exercise" android:id="@+id/imageView3"
+                    android:layout_weight="1"/>
+            <TextView
+                    android:text="Uno de los ejercicios más básicos que toda futuro mamá debería de hacer es el ejercicio de estiramiento debido a que no se expone al bebé a ningún tipo de peligro si se realizan este tipo de ejercicios, además ayuda a relajarse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/Estirar_txtView" android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>

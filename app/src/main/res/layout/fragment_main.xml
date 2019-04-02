@@ -2,13 +2,90 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
-             android:layout_height="match_parent"
+             android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
              tools:context=".Fragments.FragmentMain">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/MainLayout"
+            app:layout_constraintHorizontal_bias="0.509" app:layout_constraintVertical_bias="0.185">
+        <TextView
+                android:text="Trimestre"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/trimestre" android:textSize="24sp"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/empty"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/SemanaLayout">
+            <TextView
+                    android:text="Vamos en la semana:"
+                    android:gravity="left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" android:id="@+id/semana"/>
+            <TextView
+                    android:text="x"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/numeroSemana" android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/VitaminasLayout">
+            <TextView
+                    android:text="Recuerda tomar vitaminas:"
+                    android:gravity="left"
+                    android:layout_width="41dp"
+                    android:layout_height="match_parent" android:id="@+id/vitaminas" android:layout_weight="1"/>
+            <TextView
+                    android:text="y"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/numeroVitaminas" android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:id="@+id/caloriasLayout">
+            <TextView
+                    android:text="Tienes que ingerir"
+                    android:gravity="left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/calorias" android:layout_weight="1"/>
+            <TextView
+                    android:text="z"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/caloriasNumero" android:layout_weight="1"/>
+            <TextView
+                    android:text="calorías"
+                    android:gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/calorias2" android:layout_weight="1"/>
+        </LinearLayout>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/empty2"/>
+        <TextView
+                android:text="He cambiado! Mira como me veo hoy, mamá:"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" tools:layout_editor_absoluteY="283dp"
+                tools:layout_editor_absoluteX="152dp" android:id="@+id/info"/>
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp" app:srcCompat="@drawable/feto" android:id="@+id/imageView2"/>
+    </LinearLayout>
 
 </FrameLayout>
