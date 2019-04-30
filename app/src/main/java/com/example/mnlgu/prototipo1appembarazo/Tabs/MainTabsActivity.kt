@@ -65,7 +65,7 @@ class MainTabsActivity : AppCompatActivity() {
 
         //database
         //------------------------------------------------------------------------------
-        val db : FirebaseFirestore = FirebaseFirestore.getInstance()
+        //val db : FirebaseFirestore = FirebaseFirestore.getInstance()
 
         /*
         var user : MutableMap<String, Any> = HashMap()
