@@ -2,28 +2,22 @@ package com.example.mnlgu.prototipo1appembarazo.StartActivities
 
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.DrawableWrapper
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.MotionEvent
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import com.example.mnlgu.prototipo1appembarazo.R
-import com.example.mnlgu.prototipo1appembarazo.Tabs.MainTabsActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_datos.*
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.fragment_main.*
-import android.support.annotation.NonNull
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.firebase.firestore.DocumentReference
-import com.google.android.gms.tasks.OnSuccessListener
-
 
 
 class DatosActivity : AppCompatActivity() {
+
+    val warningColor = "#ffcece"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,18 +42,8 @@ class DatosActivity : AppCompatActivity() {
         var regla: String
         var semanaGestacion: String
 
-        //resetea el color a negro
-        confirmarContraseñaText.addTextChangedListener(object: TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                confirmarContraseñaText.setTextColor(Color.BLACK)
-            }
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                confirmarContraseñaText.setTextColor(Color.BLACK)
-            }
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                confirmarContraseñaText.setTextColor(Color.BLACK)
-            }
-        })
+        //resetea a los colores originales cuando el texto cambia
+        checkTextChanged()
 
         //checa cuando el boton se clickea
         crearUsuarioButton.setOnClickListener(object: View.OnClickListener{
@@ -78,9 +62,10 @@ class DatosActivity : AppCompatActivity() {
                 //booleanos auxiliares
                 var notEmpty : Boolean = checkAll(nombre, correo, contrasenia, confirmarContrasenia, peso, estatura, regla, semanaGestacion)
                 var checkPass : Boolean = checkPassword(contrasenia, confirmarContrasenia)
+                var passLength: Boolean = checkPasswordLength(contrasenia)
 
                 //si no esta vacio ningun campo, y las contraseñas coinciden se llena el hashmap y se sube a la db
-                if (notEmpty && checkPass){
+                if (notEmpty && checkPass && passLength){
                     user.put("nombre", nombre)
                     user.put("correo", correo)
                     user.put("contraseña", contrasenia)
@@ -105,13 +90,21 @@ class DatosActivity : AppCompatActivity() {
                             Toast.makeText(applicationContext, "Hay un problema con el servidor. Intenta mas tarde", Toast.LENGTH_SHORT).show()
                         }
                 }
-                //si esta vacio manda mensaje de que se llenen todos los campos
+                //si alguno esta vacio manda mensaje de que se llenen todos los campos
                 else if (!notEmpty){
                     Toast.makeText(applicationContext, "Por favor llena todos los campos", Toast.LENGTH_SHORT).show()
+
+                    //pone color rolo
+                    setWarningColors(nombre, correo, contrasenia, confirmarContrasenia, peso, estatura, regla, semanaGestacion)
+                }
+                //si la contraseña no es lo suficientemente larga manda warning
+                else if(!passLength){
+                    contraseñaText.setBackgroundColor(Color.parseColor(warningColor))
+                    Toast.makeText(applicationContext, "La contraseña debe ser entre 6 y 12 caracteres", Toast.LENGTH_SHORT).show()
                 }
                 //si las contraseñas no coinciden se manda mensaje y se pone texto en rojo
                 else if (!checkPass){
-                    confirmarContraseñaText.setTextColor(Color.RED)
+                    confirmarContraseñaText.setBackgroundColor(Color.parseColor(warningColor))
                     Toast.makeText(applicationContext, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -132,5 +125,112 @@ class DatosActivity : AppCompatActivity() {
         if(contrasenia.equals(confirmarContrasenia))
             return true
         return false
+    }
+
+    //checa que las contraseñas entren en el rango
+    fun checkPasswordLength(contrasenia: String): Boolean{
+        if(contrasenia.length>6 && contrasenia.length<12)
+            return true
+        return false
+    }
+
+    //si algo esta vacio lo pone en rojo
+    fun setWarningColors(nombre: String, correo: String, contrasenia: String, confirmarContrasenia: String, peso: String,
+                         estatura: String, regla: String, semanaGestacion: String){
+        if(nombre.trim().length==0){
+            nameText.setBackgroundColor(Color.parseColor(warningColor))
+        }
+        if(correo.trim().length==0){
+            correoText.setBackgroundColor(Color.parseColor(warningColor))
+        }
+        if(contrasenia.trim().length==0){
+            contraseñaText.setBackgroundColor(Color.parseColor(warningColor))
+        }
+        if(confirmarContrasenia.trim().length==0){
+            confirmarContraseñaText.setBackgroundColor(Color.parseColor(warningColor))
+        }
+        if(peso.trim().length==0){
+            pesoText.setBackgroundColor(Color.parseColor(warningColor))
+        }
+        if(estatura.trim().length==0){
+            estaturaText.setBackgroundColor(Color.parseColor(warningColor))
+        }
+        if(regla.trim().length==0){
+            reglaText.setBackgroundColor(Color.parseColor(warningColor))
+        }
+        if(semanaGestacion.trim().length==0){
+            semanaText.setBackgroundColor(Color.parseColor(warningColor))
+        }
+    }
+
+    //si el texto cambia lo resetea a su background original
+    fun checkTextChanged(){
+        //backgrounds originales
+        val nombreOldBackground: Drawable = nameText.background
+        val correoOldBackground: Drawable = correoText.background
+        val contraseniaOldBackground: Drawable = contraseñaText.background
+        val confirmarContraseniaOldBackground: Drawable = confirmarContraseñaText.background
+        val pesoOldBackground: Drawable = pesoText.background
+        val estaturaOldBackground: Drawable = estaturaText.background
+        val reglaOldBackground: Drawable = reglaText.background
+        val semanaGestacionOldBackground: Drawable = semanaText.background
+
+        //resetea el color del background
+        nameText.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                nameText.background = nombreOldBackground
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        })
+        correoText.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                correoText.background = correoOldBackground
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        })
+        contraseñaText.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                contraseñaText.background = contraseniaOldBackground
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        })
+        confirmarContraseñaText.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                confirmarContraseñaText.background = confirmarContraseniaOldBackground
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        })
+        pesoText.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                pesoText.background = pesoOldBackground
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        })
+        estaturaText.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                estaturaText.background = estaturaOldBackground
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        })
+        reglaText.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                reglaText.background = reglaOldBackground
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        })
+        semanaText.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                semanaText.background = semanaGestacionOldBackground
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        })
     }
 }

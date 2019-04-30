@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
                     android:ems="10"
-                    android:id="@+id/contraseñaText" android:hint="Contraseña"/>
+                    android:id="@+id/contraseñaText" android:hint="Contraseña (6-12 caracteres)"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
