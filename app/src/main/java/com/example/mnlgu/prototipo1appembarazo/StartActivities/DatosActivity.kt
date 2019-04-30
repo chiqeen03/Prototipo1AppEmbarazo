@@ -16,6 +16,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_datos.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_main.*
+import android.support.annotation.NonNull
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.firebase.firestore.DocumentReference
+import com.google.android.gms.tasks.OnSuccessListener
+
+
 
 class DatosActivity : AppCompatActivity() {
 
@@ -85,11 +91,19 @@ class DatosActivity : AppCompatActivity() {
                     user.put("semanaGestacion", semanaGestacion.toInt())
 
                     //se sube a la db
-                    db.collection("users").add(user)
-
-                    //inicia la siguiente actividad
-                    val intent = Intent(this@DatosActivity, LoginActivity::class.java)
-                    startActivity(intent)
+                    db.collection("users")
+                        .add(user)
+                            // si es exitoso
+                        .addOnSuccessListener {
+                            Toast.makeText(applicationContext, "Usuario creado exitosamente", Toast.LENGTH_SHORT).show()
+                            //inicia la siguiente actividad
+                            val intent = Intent(this@DatosActivity, LoginActivity::class.java)
+                            startActivity(intent)
+                        }
+                            //si no es exitoso
+                        .addOnFailureListener {
+                            Toast.makeText(applicationContext, "Hay un problema con el servidor. Intenta mas tarde", Toast.LENGTH_SHORT).show()
+                        }
                 }
                 //si esta vacio manda mensaje de que se llenen todos los campos
                 else if (!notEmpty){
