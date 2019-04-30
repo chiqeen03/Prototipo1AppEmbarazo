@@ -79,3 +79,5 @@ class MainTabsActivity : AppCompatActivity() {
         //end of database
     }
 }
+
+//FALTA: poner el drawer

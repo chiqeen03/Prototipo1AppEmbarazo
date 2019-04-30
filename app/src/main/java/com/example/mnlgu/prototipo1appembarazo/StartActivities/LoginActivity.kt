@@ -8,7 +8,10 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.example.mnlgu.prototipo1appembarazo.R
+import com.example.mnlgu.prototipo1appembarazo.R.id.continueButton
+import com.example.mnlgu.prototipo1appembarazo.R.id.emailText
 import com.example.mnlgu.prototipo1appembarazo.Tabs.MainTabsActivity
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -18,29 +21,22 @@ class LoginActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        var emailTextView = findViewById<TextView>(R.id.emailText)
-        emailTextView.setHint("E-mail")
-
-        var passwordTextView = findViewById<TextView>(R.id.passwordText)
-        passwordTextView.setHint("Password")
-
-        var continueButton = findViewById<Button>(R.id.continueButton)
         continueButton.setOnClickListener(object: View.OnClickListener{
             override fun onClick(p0: View?) {
-
-                if(emailTextView.text.toString().equals("admin") && passwordTextView.text.toString().equals("password")){
+                //cambiar aca para que acepte lo de la base de datos
+                //------------------------------------------------------------------------------------------------------
+                if(emailText.text.toString().equals("admin") && passwordText.text.toString().equals("password")){
                     val intent = Intent(this@LoginActivity, MainTabsActivity::class.java)
                     startActivity(intent)
                 }
                 else{
                     Toast.makeText(this@LoginActivity, "Incorrect user/password", Toast.LENGTH_SHORT).show()
                 }
-
+                //------------------------------------------------------------------------------------------------------
             }
         })
 
-        var newUserButton = findViewById<Button>(R.id.newUser)
-        newUserButton.setOnClickListener(object: View.OnClickListener{
+        newUser.setOnClickListener(object: View.OnClickListener{
             override fun onClick(p0: View?) {
                 val intent = Intent(this@LoginActivity, DatosActivity::class.java)
                 startActivity(intent)

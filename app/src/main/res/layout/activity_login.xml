@@ -29,13 +29,13 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/emailText"/>
+                android:id="@+id/emailText" android:hint="E-Mail"/>
         <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/passwordText"/>
+                android:id="@+id/passwordText" android:hint="Contraseña"/>
         <Button
                 android:text="Continuar"
                 android:layout_width="match_parent"

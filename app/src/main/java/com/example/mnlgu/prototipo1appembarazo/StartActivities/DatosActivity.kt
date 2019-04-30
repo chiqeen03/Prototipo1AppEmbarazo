@@ -234,3 +234,6 @@ class DatosActivity : AppCompatActivity() {
         })
     }
 }
+
+
+//FALTA: darle formato DATE a la regla
