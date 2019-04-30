@@ -78,7 +78,7 @@ class DatosActivity : AppCompatActivity() {
                     user.put("nombre", nombre)
                     user.put("correo", correo)
                     user.put("contraseña", contrasenia)
-                    user.put("confirmarContraseña", confirmarContrasenia)
+                    //user.put("confirmarContraseña", confirmarContrasenia)
                     user.put("peso", peso.toFloat())
                     user.put("estatura", estatura.toFloat())
                     user.put("regla", regla)
