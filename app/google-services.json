@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "140023413448",
+    "firebase_url": "https://embarazodb.firebaseio.com",
+    "project_id": "embarazodb",
+    "storage_bucket": "embarazodb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140023413448:android:e840987b575053ed",
+        "android_client_info": {
+          "package_name": "com.example.mnlgu.prototipo1appembarazo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "140023413448-25mrk18q5503b73pf68it9a3m7p4qrd6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mnlgu.prototipo1appembarazo",
+            "certificate_hash": "15850e4c2e4bc32254dad9d9e87da28293ed0eab"
+          }
+        },
+        {
+          "client_id": "140023413448-pd8f7t7kqdkdk4ih5nl17i2gd9g7ii0q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6aAdch2DtKf0lvrp25v1MUh-PIkA_93k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "140023413448-pd8f7t7kqdkdk4ih5nl17i2gd9g7ii0q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
