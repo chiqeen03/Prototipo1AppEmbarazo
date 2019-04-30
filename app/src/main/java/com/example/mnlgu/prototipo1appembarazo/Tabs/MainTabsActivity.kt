@@ -15,35 +15,25 @@ class MainTabsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main_tabs)
 
 
-        /*
-        var main : TabLayout.Tab?= TabLayout.Tab()
+        setSupportActionBar(toolbar) //set toolbar
 
-        main!!.setText("Main")
+        val icons = arrayOfNulls<Int>(5)
+        icons[0] = R.drawable.bebe
+        icons[1] = R.drawable.comida
+        icons[2] = R.drawable.ejercicios
+        icons[3] = R.drawable.sintomas
+        icons[4] = R.drawable.calendario
 
-        var dieta : TabLayout.Tab? = TabLayout.Tab()
-        dieta!!.setText("Dieta")
-
-        var ejercicios : TabLayout.Tab? = TabLayout.Tab()
-        ejercicios!!.setText("Ejercicios")
-
-        var sintomas : TabLayout.Tab? = TabLayout.Tab()
-        sintomas!!.setText("Sintomas")
-
-        var calendario : TabLayout.Tab? = TabLayout.Tab()
-        calendario!!.setText("Main")
-
-        tabLayout!!.addTab(main)
-        tabLayout!!.addTab(dieta)
-        tabLayout!!.addTab(ejercicios)
-        tabLayout!!.addTab(sintomas)
-        tabLayout!!.addTab(calendario)
-        tabLayout!!.tabGravity = TabLayout.GRAVITY_FILL
-        */
 
         val adapter = MyAdapter(this, supportFragmentManager, 5)
         viewPager!!.adapter = adapter
 
         tabs.setupWithViewPager(viewPager)
+
+        //set icons
+        for (i in 0..adapter.count){
+            tabs.getTabAt(i)?.setIcon(icons[i]!!)
+        }
 
         viewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
 
