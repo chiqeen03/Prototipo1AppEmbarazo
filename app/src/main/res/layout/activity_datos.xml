@@ -43,7 +43,7 @@
             <TextView
                     android:text="Datos:"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textView4"/>
+                    android:layout_height="wrap_content" android:id="@+id/datosTextView"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -72,10 +72,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/textView3"/>
             <TextView
-                    android:text="TextView"
+                    android:text="Y ahora un poco de información personal:"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" tools:text="Y ahora un poco de información personal:"
-                    android:id="@+id/personal"/>
+                    android:layout_height="wrap_content"
+                    android:id="@+id/personal" tools:text="Y ahora un poco de información personal:"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
