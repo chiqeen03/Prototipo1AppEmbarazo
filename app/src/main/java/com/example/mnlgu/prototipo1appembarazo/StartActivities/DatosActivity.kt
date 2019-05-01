@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
+import com.example.mnlgu.prototipo1appembarazo.Datos2Activity
 import com.example.mnlgu.prototipo1appembarazo.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,57 +24,31 @@ class DatosActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_datos)
 
-        //database
-        val db : FirebaseFirestore = FirebaseFirestore.getInstance() //database
-
-
-
-        //HashMap Auxiliar
-        var user : MutableMap<String, Any> = HashMap()
-
         //escondemos la action bar
         supportActionBar?.hide()
 
         //variables para el HashMap
-        var nombre: String
         var correo: String
         var contrasenia: String
         var confirmarContrasenia: String
-        var peso: String
-        var estatura: String
-        var regla: String
-        var semanaGestacion: String
 
         //checa cuando el boton se clickea
-        crearUsuarioButton.setOnClickListener(object: View.OnClickListener{
+        continuarButton.setOnClickListener(object: View.OnClickListener{
             override fun onClick(p0: View?) {
 
                 //se llenan las variables del hashmap para su subida a base de datos
-                nombre = nameText.text.toString()
                 correo = correoText.text.toString()
                 contrasenia = contraseñaText.text.toString()
                 confirmarContrasenia = confirmarContraseñaText.text.toString()
-                peso = pesoText.text.toString()
-                estatura = estaturaText.text.toString()
-                regla = reglaText.text.toString()
-                semanaGestacion = semanaText.text.toString()
 
                 //booleanos auxiliares
-                var notEmpty : Boolean = checkAll(nombre, correo, contrasenia, confirmarContrasenia, peso, estatura, regla, semanaGestacion)
+                var notEmpty : Boolean = checkAll(correo, contrasenia, confirmarContrasenia)
                 var checkPass : Boolean = checkPassword(contrasenia, confirmarContrasenia)
                 var passLength: Boolean = checkPasswordLength(contrasenia)
                 var checkEmail: Boolean = checkEmail(correo)
 
                 //si no esta vacio ningun campo, y las contraseñas coinciden se llena el hashmap y se sube a la db
                 if (notEmpty && checkPass && passLength && checkEmail){
-                    user.put("nombre", nombre)
-                    user.put("correo", correo) // para authentication
-                    //user.put("contraseña", contrasenia) // para authentication
-                    //user.put("confirmarContraseña", confirmarContrasenia)
-                    user.put("peso", peso.toFloat())
-                    user.put("estatura", estatura.toFloat())
-                    user.put("regla", regla)
-                    user.put("semanaGestacion", semanaGestacion.toInt())
 
                     progressBar.visibility = View.VISIBLE
 
@@ -83,23 +58,10 @@ class DatosActivity : AppCompatActivity(){
                             //registration OK
                             val user = mAuth.currentUser!!
                             //se sube a la db
-                            db.collection("users")
-                                .add(user)
-                                // si es exitoso
-                                .addOnSuccessListener {
-                                    progressBar.visibility = View.GONE
-                                    Toast.makeText(applicationContext, "Usuario creado exitosamente", Toast.LENGTH_SHORT).show()
-                                    //inicia la siguiente actividad
-                                    val intent = Intent(this@DatosActivity, LoginActivity::class.java)
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                                    startActivity(intent)
-                                    finish()
-                                }
-                                //si no es exitoso
-                                .addOnFailureListener {
-                                    progressBar.visibility = View.GONE
-                                    Toast.makeText(applicationContext, "Hay un problema con el servidor. Intenta mas tarde", Toast.LENGTH_SHORT).show()
-                                }
+                            val intent = Intent(this@DatosActivity, Datos2Activity::class.java)
+                            intent.putExtra("correo", correo)
+                            intent.putExtra("uid", user.uid)
+                            startActivity(intent)
                         }
                         else{
                             // error
@@ -121,7 +83,7 @@ class DatosActivity : AppCompatActivity(){
                     Toast.makeText(applicationContext, "Por favor llena todos los campos", Toast.LENGTH_SHORT).show()
 
                     //pone color rolo
-                    requestFocusAll(nombre, correo, contrasenia, confirmarContrasenia, peso, estatura, regla, semanaGestacion)
+                    requestFocusAll(correo, contrasenia, confirmarContrasenia)
                 }
                 else if(!checkEmail){
                     correoText.requestFocus()
@@ -142,10 +104,8 @@ class DatosActivity : AppCompatActivity(){
     }
 
     //checa si todos estan llenos
-    fun checkAll(nombre: String, correo: String, contrasenia: String, confirmarContrasenia: String, peso: String,
-                 estatura: String, regla: String, semanaGestacion: String) : Boolean{
-        if(nombre.trim().length>0 && correo.trim().length>0 && contrasenia.trim().length>0 && confirmarContrasenia.trim().length>0
-            && peso.trim().length>0 && estatura.trim().length>0 && regla.trim().length>0 && semanaGestacion.trim().length>0)
+    fun checkAll(correo: String, contrasenia: String, confirmarContrasenia: String) : Boolean{
+        if(correo.trim().length>0 && contrasenia.trim().length>0 && confirmarContrasenia.trim().length>0)
             return true
         return false
     }
@@ -159,17 +119,13 @@ class DatosActivity : AppCompatActivity(){
 
     //checa que las contraseñas entren en el rango
     fun checkPasswordLength(contrasenia: String): Boolean{
-        if(contrasenia.length>6 && contrasenia.length<12)
+        if(contrasenia.length>=6)
             return true
         return false
     }
 
     //si algo esta vacio lo pone en rojo
-    fun requestFocusAll(nombre: String, correo: String, contrasenia: String, confirmarContrasenia: String, peso: String,
-                        estatura: String, regla: String, semanaGestacion: String){
-        if(nombre.trim().length==0){
-            nameText.requestFocus()
-        }
+    fun requestFocusAll(correo: String, contrasenia: String, confirmarContrasenia: String){
         if(correo.trim().length==0){
             correoText.requestFocus()
         }
@@ -178,18 +134,6 @@ class DatosActivity : AppCompatActivity(){
         }
         if(confirmarContrasenia.trim().length==0){
             confirmarContraseñaText.requestFocus()
-        }
-        if(peso.trim().length==0){
-            pesoText.requestFocus()
-        }
-        if(estatura.trim().length==0){
-            estaturaText.requestFocus()
-        }
-        if(regla.trim().length==0){
-            reglaText.requestFocus()
-        }
-        if(semanaGestacion.trim().length==0){
-            semanaText.requestFocus()
         }
     }
 

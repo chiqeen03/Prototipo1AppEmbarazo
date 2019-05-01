@@ -30,87 +30,42 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.192"
             android:textSize="18sp" app:layout_constraintHorizontal_bias="0.0"/>
-    <ScrollView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="1.0" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/descripcionTexto">
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="0dp"
+                  android:orientation="vertical"
+                  android:layout_marginBottom="8dp"
+                  app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                  android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+                  android:layout_marginStart="8dp" android:layout_marginTop="8dp"
+                  app:layout_constraintTop_toBottomOf="@+id/descripcionTexto">
+        <TextView
+                android:text="Datos:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/datosTextView"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/correoText" android:hint="Correo"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/contraseñaText" android:hint="Contraseña (6 caracteres min)"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/confirmarContraseñaText" android:hint="Confirmar Contraseña"/>
+        <Button
+                android:text="Continuar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/continuarButton"/>
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                      android:orientation="vertical">
-            <TextView
-                    android:text="Datos:"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/datosTextView"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="10"
-                    android:id="@+id/nameText" android:hint="Nombre"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:ems="10"
-                    android:id="@+id/correoText" android:hint="Correo"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:ems="10"
-                    android:id="@+id/contraseñaText" android:hint="Contraseña (6-12 caracteres)"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:ems="10"
-                    android:id="@+id/confirmarContraseñaText" android:hint="Confirmar Contraseña"/>
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textView3"/>
-            <TextView
-                    android:text="Y ahora un poco de información personal:"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/personal" tools:text="Y ahora un poco de información personal:"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/pesoText" android:hint="Peso en Kg (antes del embarazo)*"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/estaturaText" android:hint="Estatura (en cm) *"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="date"
-                    android:ems="10"
-                    android:id="@+id/reglaText" android:hint="Ultima regla (aproximada)*"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:ems="10"
-                    android:id="@+id/semanaText" android:hint="Semana de gestación*"/>
-            <TextView
-                    android:text="* Si no estás segura de cualquiera de estos puntos, consulta a tu ginecólogo."
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/info"/>
-            <Button
-                    android:text="Crear Usuario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/crearUsuarioButton"/>
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
     <ProgressBar
             android:layout_width="wrap_content"

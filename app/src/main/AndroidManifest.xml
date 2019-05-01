@@ -14,7 +14,6 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-
         <activity android:name=".StartActivities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -30,6 +29,8 @@
                 android:name=".Tabs.MainTabsActivity"
                 android:label="@string/title_activity_main_tabs"
                 android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".Datos2Activity">
         </activity>
     </application>
 
