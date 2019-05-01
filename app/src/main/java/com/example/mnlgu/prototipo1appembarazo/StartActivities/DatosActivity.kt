@@ -6,10 +6,8 @@ import android.os.Bundle
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
-import com.example.mnlgu.prototipo1appembarazo.Datos2Activity
 import com.example.mnlgu.prototipo1appembarazo.R
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_datos.*
 import com.google.firebase.auth.AuthResult
 import com.google.android.gms.tasks.Task

@@ -1,4 +1,4 @@
-package com.example.mnlgu.prototipo1appembarazo.Tabs
+package com.example.mnlgu.prototipo1appembarazo.MainActivities
 
 import android.support.v4.app.FragmentPagerAdapter
 import android.content.Context;

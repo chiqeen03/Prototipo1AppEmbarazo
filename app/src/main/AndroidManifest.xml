@@ -25,12 +25,12 @@
         </activity>
         <activity android:name=".StartActivities.DatosActivity">
         </activity>
-        <activity
-                android:name=".Tabs.MainTabsActivity"
-                android:label="@string/title_activity_main_tabs"
-                android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".StartActivities.Datos2Activity">
         </activity>
-        <activity android:name=".Datos2Activity">
+        <activity
+                android:name=".MainActivities.MainDrawerActivity"
+                android:label="@string/title_activity_main_drawer"
+                android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

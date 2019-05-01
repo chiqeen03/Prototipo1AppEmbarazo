@@ -6,11 +6,12 @@ import android.os.Bundle
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
+import com.example.mnlgu.prototipo1appembarazo.MainActivities.MainDrawerActivity
 import com.example.mnlgu.prototipo1appembarazo.R
-import com.example.mnlgu.prototipo1appembarazo.Tabs.MainTabsActivity
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -24,58 +25,65 @@ class LoginActivity : AppCompatActivity() {
         //base de autenticacion
         val mAuth = FirebaseAuth.getInstance()
 
-        var email : String
-        var password : String
+        val user: FirebaseUser? = mAuth.currentUser
 
-        continueButton.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(p0: View?) {
-                email = emailText.text.toString()
-                password = passwordText.text.toString()
+        if (user != null) {
+            val intent = Intent(this@LoginActivity, MainDrawerActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            finish()
+        }
+        else {
+            var email: String
+            var password: String
 
-                val checkEmail: Boolean = checkEmail(email)
-                val checkAll: Boolean = checkAll(email, password)
+            continueButton.setOnClickListener(object : View.OnClickListener {
+                override fun onClick(p0: View?) {
+                    email = emailText.text.toString()
+                    password = passwordText.text.toString()
 
-                progressBar.visibility = View.VISIBLE
+                    val checkEmail: Boolean = checkEmail(email)
+                    val checkAll: Boolean = checkAll(email, password)
 
-                if(checkEmail && checkAll){
-                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener{ task: Task<AuthResult> ->
-                        if(task.isSuccessful){
-                            progressBar.visibility = View.GONE
-                            val intent = Intent(this@LoginActivity, MainTabsActivity::class.java)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            startActivity(intent)
-                            finish()
+                    progressBar.visibility = View.VISIBLE
+
+                    if (checkEmail && checkAll) {
+                        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task: Task<AuthResult> ->
+                            if (task.isSuccessful) {
+                                progressBar.visibility = View.GONE
+                                val intent = Intent(this@LoginActivity, MainDrawerActivity::class.java)
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                progressBar.visibility = View.GONE
+                                Toast.makeText(applicationContext, task.exception?.message, Toast.LENGTH_SHORT).show()
+                            }
                         }
-                        else{
-                            progressBar.visibility = View.GONE
-                            Toast.makeText(applicationContext, task.exception?.message, Toast.LENGTH_SHORT).show()
-                        }
+                    } else if (!checkAll) {
+                        checkFocus(email, password)
+                        progressBar.visibility = View.GONE
+                        Toast.makeText(applicationContext, "Por favor llena todos los campos", Toast.LENGTH_SHORT).show()
+                    } else if (!checkEmail) {
+                        emailText.requestFocus()
+                        progressBar.visibility = View.GONE
+                        Toast.makeText(applicationContext, "Ingresa un email valido", Toast.LENGTH_SHORT).show()
                     }
                 }
-                else if(!checkAll){
-                    checkFocus(email, password)
-                    progressBar.visibility = View.GONE
-                    Toast.makeText(applicationContext, "Por favor llena todos los campos", Toast.LENGTH_SHORT).show()
+            })
+
+            //cambiar de ventana
+            //val intent = Intent(this@LoginActivity, MainTabsActivity::class.java)
+            //startActivity(intent)
+
+
+            newUser.setOnClickListener(object : View.OnClickListener {
+                override fun onClick(p0: View?) {
+                    val intent = Intent(this@LoginActivity, DatosActivity::class.java)
+                    startActivity(intent)
                 }
-                else if(!checkEmail){
-                    emailText.requestFocus()
-                    progressBar.visibility = View.GONE
-                    Toast.makeText(applicationContext, "Ingresa un email valido", Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
-
-        //cambiar de ventana
-        //val intent = Intent(this@LoginActivity, MainTabsActivity::class.java)
-        //startActivity(intent)
-
-
-        newUser.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(p0: View?) {
-                val intent = Intent(this@LoginActivity, DatosActivity::class.java)
-                startActivity(intent)
-            }
-        })
+            })
+        }
     }
 
     fun checkEmail(email: String): Boolean {

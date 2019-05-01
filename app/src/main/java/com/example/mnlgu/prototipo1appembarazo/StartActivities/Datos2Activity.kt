@@ -1,11 +1,11 @@
-package com.example.mnlgu.prototipo1appembarazo
+package com.example.mnlgu.prototipo1appembarazo.StartActivities
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.example.mnlgu.prototipo1appembarazo.StartActivities.LoginActivity
+import com.example.mnlgu.prototipo1appembarazo.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest

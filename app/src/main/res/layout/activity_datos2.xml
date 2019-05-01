@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Datos2Activity">
+        tools:context=".StartActivities.Datos2Activity">
 
     <TextView
             android:text="Y ahora, un poco de información personal"

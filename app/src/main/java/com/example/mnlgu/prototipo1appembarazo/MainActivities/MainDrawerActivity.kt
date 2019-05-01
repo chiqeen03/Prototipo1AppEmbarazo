@@ -1,0 +1,190 @@
+package com.example.mnlgu.prototipo1appembarazo.MainActivities
+
+import android.content.Intent
+import android.os.Bundle
+import android.support.design.widget.NavigationView
+import android.support.design.widget.TabLayout
+import android.support.v4.view.GravityCompat
+import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AppCompatActivity
+import android.view.Menu
+import android.view.MenuItem
+import android.view.Window
+import android.widget.LinearLayout
+import android.widget.TextView
+import com.example.mnlgu.prototipo1appembarazo.R
+import com.example.mnlgu.prototipo1appembarazo.StartActivities.LoginActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.activity_main_drawer.*
+import kotlinx.android.synthetic.main.app_bar_main_drawer.*
+import kotlinx.android.synthetic.main.content_main_drawer.*
+import kotlinx.android.synthetic.main.nav_header_main_drawer.*
+
+class MainDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    var firebaseUser: FirebaseUser? = null
+    var mAuth: FirebaseAuth? = null
+
+    override fun onStart() {
+        super.onStart()
+
+        if(firebaseUser == null){
+            updateUI(firebaseUser)
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main_drawer)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        //authentication
+        mAuth = FirebaseAuth.getInstance()
+
+        firebaseUser = mAuth?.currentUser
+
+        //IMPORTANTE
+        val whereIsView = findViewById<NavigationView>(R.id.nav_view)
+        val headerLayout = whereIsView.getHeaderView(0)
+        val userNameTextView = headerLayout.findViewById<TextView>(R.id.header_name)
+        val userEmailTextView = headerLayout.findViewById<TextView>(R.id.header_email)
+
+        /*
+        fab.setOnClickListener { view ->
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+        }
+        */
+
+        val toggle = ActionBarDrawerToggle(
+            this, drawer_layout, toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
+        drawer_layout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        nav_view.setNavigationItemSelectedListener(this)
+
+
+        //tabs and icons here
+        //--------------------------------------------------------------------------------------------------------------
+        val icons = arrayOfNulls<Int>(5)
+        icons[0] = R.drawable.bebe
+        icons[1] = R.drawable.comida
+        icons[2] = R.drawable.ejercicios
+        icons[3] = R.drawable.sintomas
+        icons[4] = R.drawable.calendario
+
+        val adapter = MyAdapter(this, supportFragmentManager, 5)
+        viewPager!!.adapter = adapter
+
+        tabs.setupWithViewPager(viewPager)
+
+        //set icons
+        for (i in 0..adapter.count){
+            tabs.getTabAt(i)?.setIcon(icons[i]!!)
+        }
+
+        viewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
+
+        tabs!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                viewPager!!.currentItem = tab.position
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+
+            }
+            override fun onTabReselected(tab: TabLayout.Tab) {
+
+            }
+        })
+
+        //--------------------------------------------------------------------------------------------------------------
+        // end of tabs and icons
+
+        var userName = "name"
+        var userEmail = "email"
+
+        if(firebaseUser!= null){
+            userName = firebaseUser?.displayName.toString()
+            userEmail = firebaseUser?.email.toString()
+
+
+            if(userName.isNotEmpty()){
+                userNameTextView.text = userName
+            }
+            else{
+                userNameTextView.text = "name"
+            }
+            if(userEmail.isNotEmpty()){
+                userEmailTextView.text = userEmail
+            }
+            else{
+                userEmailTextView.text = "email"
+            }
+        }
+    }
+
+    fun updateUI(user: FirebaseUser?){
+        if(user != null){
+            val intent = Intent(this@MainDrawerActivity, LoginActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    override fun onBackPressed() {
+        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            drawer_layout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.main_drawer, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        when (item.itemId) {
+            R.id.action_settings -> return true
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        // Handle navigation view item clicks here.
+        when (item.itemId) {
+            R.id.nav_profile -> {
+                // Handle the camera action
+            }
+            R.id.nav_gallery -> {
+
+            }
+            R.id.nav_slideshow -> {
+
+            }
+            R.id.nav_manage -> {
+
+            }
+            R.id.nav_share -> {
+
+            }
+            R.id.nav_send -> {
+
+            }
+        }
+
+        drawer_layout.closeDrawer(GravityCompat.START)
+        return true
+    }
+}
