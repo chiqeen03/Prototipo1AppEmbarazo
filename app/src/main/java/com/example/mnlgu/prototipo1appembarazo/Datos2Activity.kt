@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.example.mnlgu.prototipo1appembarazo.StartActivities.LoginActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_datos2.*
 
@@ -17,6 +20,8 @@ class Datos2Activity : AppCompatActivity() {
 
         //database
         val db : FirebaseFirestore = FirebaseFirestore.getInstance() //database
+
+        val mAuth = FirebaseAuth.getInstance()
 
         //HashMap Auxiliar
         var user : MutableMap<String, Any> = HashMap()
@@ -33,6 +38,8 @@ class Datos2Activity : AppCompatActivity() {
         var regla: String
         var semanaGestacion: String
 
+        var firebaseUser: FirebaseUser? = mAuth.currentUser
+
         crearUsuarioButton.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
                 uid = intent.getStringExtra("uid")
@@ -47,6 +54,25 @@ class Datos2Activity : AppCompatActivity() {
                 var notEmpty : Boolean = checkAll(nombre, peso, estatura, regla, semanaGestacion)
 
                 if (notEmpty){
+
+                    if(firebaseUser != null){
+                        //para updatear el perfil
+                        var profile : UserProfileChangeRequest = UserProfileChangeRequest.Builder()
+                            .setDisplayName(nombre)
+                            .build()
+
+                        //updatea el perfil
+                        firebaseUser.updateProfile(profile).addOnCompleteListener{task ->
+                            if(task.isSuccessful){
+
+                            }
+                            else{
+
+                            }
+
+                        }
+                    }
+
                     user.put("_id", uid)
                     user.put("nombre", nombre)
                     user.put("correo", correo)

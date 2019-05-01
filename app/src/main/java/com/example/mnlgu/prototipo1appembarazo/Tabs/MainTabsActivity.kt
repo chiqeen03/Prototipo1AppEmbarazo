@@ -25,6 +25,8 @@ class MainTabsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_tabs)
 
+        supportActionBar?.hide()
+
         setSupportActionBar(toolbar) //set toolbar
 
         //tabs and icons here
@@ -59,24 +61,6 @@ class MainTabsActivity : AppCompatActivity() {
 
             }
         })
-
-        //------------------------------------------------------------------------------
-        //end of tabs and icons
-
-        //database
-        //------------------------------------------------------------------------------
-        //val db : FirebaseFirestore = FirebaseFirestore.getInstance()
-
-        /*
-        var user : MutableMap<String, Any> = HashMap()
-        user.put("first", "Ada")
-        user.put("last", "Lovelace")
-        user.put("born", 1815)
-
-        db.collection("users").add(user)
-        */
-        //------------------------------------------------------------------------------
-        //end of database
     }
 }
 

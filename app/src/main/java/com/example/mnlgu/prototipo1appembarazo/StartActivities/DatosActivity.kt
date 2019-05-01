@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
 class DatosActivity : AppCompatActivity(){
 
-    val mAuth = FirebaseAuth.getInstance()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +26,8 @@ class DatosActivity : AppCompatActivity(){
 
         //escondemos la action bar
         supportActionBar?.hide()
+
+        val mAuth = FirebaseAuth.getInstance()
 
         //variables para el HashMap
         var correo: String

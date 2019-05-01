@@ -16,10 +16,15 @@
             app:layout_constraintBottom_toBottomOf="parent" android:id="@+id/MainLayout"
             app:layout_constraintHorizontal_bias="0.509" app:layout_constraintVertical_bias="0.185">
         <TextView
-                android:text="Trimestre"
+                android:text="Bienvenida"
                 android:gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/trimestre" android:textSize="24sp"/>
+                android:layout_height="wrap_content" android:id="@+id/bienvenida"/>
+        <TextView
+                android:text="Nombre"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/nameText" android:textSize="24sp"/>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/empty"/>
