@@ -16,7 +16,16 @@ class FragmentMain : Fragment() {
 
         val mAuth = FirebaseAuth.getInstance()
 
+        // NO FUNCIONA
+        /*
         var userFirebaseAuth = mAuth.currentUser
+
+        if(userFirebaseAuth != null){
+            if(userFirebaseAuth.displayName != null){
+                nameText.setText(userFirebaseAuth.displayName.toString())
+            }
+        }
+        */
     }
 
     override fun onCreateView(

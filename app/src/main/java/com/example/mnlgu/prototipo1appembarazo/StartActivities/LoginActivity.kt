@@ -38,8 +38,7 @@ class LoginActivity : AppCompatActivity() {
                 progressBar.visibility = View.VISIBLE
 
                 if(checkEmail && checkAll){
-                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
-                            task: Task<AuthResult> ->
+                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener{ task: Task<AuthResult> ->
                         if(task.isSuccessful){
                             progressBar.visibility = View.GONE
                             val intent = Intent(this@LoginActivity, MainTabsActivity::class.java)

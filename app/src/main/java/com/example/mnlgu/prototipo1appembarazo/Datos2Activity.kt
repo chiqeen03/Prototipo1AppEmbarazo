@@ -64,10 +64,10 @@ class Datos2Activity : AppCompatActivity() {
                         //updatea el perfil
                         firebaseUser.updateProfile(profile).addOnCompleteListener{task ->
                             if(task.isSuccessful){
-
+                                //Toast.makeText(applicationContext, firebaseUser.displayName.toString(), Toast.LENGTH_SHORT).show()
                             }
                             else{
-
+                                Toast.makeText(applicationContext, task.exception?.message, Toast.LENGTH_SHORT).show()
                             }
 
                         }
