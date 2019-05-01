@@ -7,28 +7,6 @@ import android.support.v4.app.FragmentManager
 
 class MyAdapter(private val myContext: Context, fm: FragmentManager, internal var totalTabs: Int) : FragmentPagerAdapter(fm) {
 
-    /*
-    override fun getPageTitle(position: Int): CharSequence? {
-        when (position) {
-            0 -> {
-                return "Main"
-            }
-            1 -> {
-                return "Dieta"
-            }
-            2 -> {
-                return "Ejercicios"
-            }
-            3 -> {
-                return "Sintomas"
-            }
-            else -> {
-                return "Calendario"
-            }
-        }
-    }
-    */
-
     // this is for fragment tabs
     override fun getItem(position: Int): Fragment? {
         when (position) {

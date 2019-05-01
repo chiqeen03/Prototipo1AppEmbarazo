@@ -4,14 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.Window
-import android.widget.LinearLayout
+import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import com.example.mnlgu.prototipo1appembarazo.R
 import com.example.mnlgu.prototipo1appembarazo.StartActivities.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -19,7 +20,6 @@ import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main_drawer.*
 import kotlinx.android.synthetic.main.app_bar_main_drawer.*
 import kotlinx.android.synthetic.main.content_main_drawer.*
-import kotlinx.android.synthetic.main.nav_header_main_drawer.*
 
 class MainDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -50,13 +50,7 @@ class MainDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         val headerLayout = whereIsView.getHeaderView(0)
         val userNameTextView = headerLayout.findViewById<TextView>(R.id.header_name)
         val userEmailTextView = headerLayout.findViewById<TextView>(R.id.header_email)
-
-        /*
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
-        */
+        val correoVerificadoTextView = headerLayout.findViewById<TextView>(R.id.header_correo_verificado)
 
         val toggle = ActionBarDrawerToggle(
             this, drawer_layout, toolbar,
@@ -78,7 +72,9 @@ class MainDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         icons[3] = R.drawable.sintomas
         icons[4] = R.drawable.calendario
 
+
         val adapter = MyAdapter(this, supportFragmentManager, 5)
+
         viewPager!!.adapter = adapter
 
         tabs.setupWithViewPager(viewPager)
@@ -105,27 +101,44 @@ class MainDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         //--------------------------------------------------------------------------------------------------------------
         // end of tabs and icons
 
+        //muestra datos en el head del drawer
+        //--------------------------------------------------------------------------------------------------------------
         var userName = "name"
         var userEmail = "email"
 
         if(firebaseUser!= null){
             userName = firebaseUser?.displayName.toString()
             userEmail = firebaseUser?.email.toString()
+            val verified = firebaseUser!!.isEmailVerified
 
+            val userAux = firebaseUser
 
             if(userName.isNotEmpty()){
                 userNameTextView.text = userName
             }
-            else{
-                userNameTextView.text = "name"
-            }
             if(userEmail.isNotEmpty()){
                 userEmailTextView.text = userEmail
             }
+            if(verified){
+                correoVerificadoTextView.text = "Correo verificado"
+            }
             else{
-                userEmailTextView.text = "email"
+                correoVerificadoTextView.text = "Verificar correo"
+                correoVerificadoTextView.setOnClickListener(object : View.OnClickListener{
+                    override fun onClick(p0: View?) {
+                        userAux?.sendEmailVerification()?.addOnCompleteListener{ task ->
+                            if(task.isSuccessful){
+                                Toast.makeText(applicationContext, "Correo enviado exitosamente", Toast.LENGTH_SHORT).show()
+                            }
+                            else{
+                                Toast.makeText(applicationContext, task.exception?.message, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                })
             }
         }
+        //--------------------------------------------------------------------------------------------------------------
     }
 
     fun updateUI(user: FirebaseUser?){
@@ -165,22 +178,14 @@ class MainDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_profile -> {
-                // Handle the camera action
-            }
-            R.id.nav_gallery -> {
 
             }
-            R.id.nav_slideshow -> {
-
-            }
-            R.id.nav_manage -> {
-
-            }
-            R.id.nav_share -> {
-
-            }
-            R.id.nav_send -> {
-
+            R.id.nav_logout -> {
+                FirebaseAuth.getInstance().signOut()
+                val intent = Intent(this@MainDrawerActivity, LoginActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
+                finish()
             }
         }
 

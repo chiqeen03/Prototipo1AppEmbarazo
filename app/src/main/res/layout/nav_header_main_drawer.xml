@@ -35,5 +35,10 @@
             android:layout_height="wrap_content"
             android:text="@string/nav_header_subtitle"
             android:id="@+id/header_email"/>
+    <TextView
+            android:text="Verificar Correo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/header_correo_verificado"/>
 
 </LinearLayout>
