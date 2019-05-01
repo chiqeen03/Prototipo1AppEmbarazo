@@ -17,6 +17,7 @@ import android.support.annotation.NonNull
 import com.google.android.gms.tasks.OnCompleteListener
 import android.R.attr.password
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
 
 class DatosActivity : AppCompatActivity(){
@@ -105,11 +106,14 @@ class DatosActivity : AppCompatActivity(){
                         }
                         else{
                             // error
-                            Toast.makeText(applicationContext, "Hay un problema con el servidor. Intenta mas tarde", Toast.LENGTH_SHORT).show()
+                            if(task.exception is FirebaseAuthUserCollisionException)
+                                Toast.makeText(applicationContext, "El usuario ya existe", Toast.LENGTH_SHORT).show()
+                            else
+                                Toast.makeText(applicationContext, "Hubo un problema con el servidor, intenta mas tarde", Toast.LENGTH_SHORT).show()
                         }
                     }
 
-
+                    progressBar.visibility = View.GONE
                 }
                 //si alguno esta vacio manda mensaje de que se llenen todos los campos
                 else if (!notEmpty){
