@@ -10,19 +10,13 @@ import com.example.mnlgu.prototipo1appembarazo.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_datos.*
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.AuthResult
 import com.google.android.gms.tasks.Task
-import android.support.annotation.NonNull
-import com.google.android.gms.tasks.OnCompleteListener
-import android.R.attr.password
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
 
 class DatosActivity : AppCompatActivity(){
 
-    val warningColor = "#ffcece"
     val mAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -97,23 +91,30 @@ class DatosActivity : AppCompatActivity(){
                                     Toast.makeText(applicationContext, "Usuario creado exitosamente", Toast.LENGTH_SHORT).show()
                                     //inicia la siguiente actividad
                                     val intent = Intent(this@DatosActivity, LoginActivity::class.java)
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                                     startActivity(intent)
+                                    finish()
                                 }
                                 //si no es exitoso
                                 .addOnFailureListener {
+                                    progressBar.visibility = View.GONE
                                     Toast.makeText(applicationContext, "Hay un problema con el servidor. Intenta mas tarde", Toast.LENGTH_SHORT).show()
                                 }
                         }
                         else{
                             // error
-                            if(task.exception is FirebaseAuthUserCollisionException)
+                            if(task.exception is FirebaseAuthUserCollisionException){
+                                progressBar.visibility = View.GONE
                                 Toast.makeText(applicationContext, "El usuario ya existe", Toast.LENGTH_SHORT).show()
-                            else
+                            }
+
+                            else{
+                                progressBar.visibility = View.GONE
                                 Toast.makeText(applicationContext, "Hubo un problema con el servidor, intenta mas tarde", Toast.LENGTH_SHORT).show()
+                            }
+
                         }
                     }
-
-                    progressBar.visibility = View.GONE
                 }
                 //si alguno esta vacio manda mensaje de que se llenen todos los campos
                 else if (!notEmpty){

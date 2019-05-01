@@ -8,15 +8,10 @@ import android.view.View
 import android.widget.Toast
 import com.example.mnlgu.prototipo1appembarazo.R
 import com.example.mnlgu.prototipo1appembarazo.Tabs.MainTabsActivity
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthUserCollisionException
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.fragment_main.view.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -46,25 +41,28 @@ class LoginActivity : AppCompatActivity() {
                     mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
                             task: Task<AuthResult> ->
                         if(task.isSuccessful){
+                            progressBar.visibility = View.GONE
                             val intent = Intent(this@LoginActivity, MainTabsActivity::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                             startActivity(intent)
                             finish()
                         }
                         else{
+                            progressBar.visibility = View.GONE
                             Toast.makeText(applicationContext, task.exception?.message, Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
                 else if(!checkAll){
                     checkFocus(email, password)
+                    progressBar.visibility = View.GONE
                     Toast.makeText(applicationContext, "Por favor llena todos los campos", Toast.LENGTH_SHORT).show()
                 }
                 else if(!checkEmail){
                     emailText.requestFocus()
+                    progressBar.visibility = View.GONE
                     Toast.makeText(applicationContext, "Ingresa un email valido", Toast.LENGTH_SHORT).show()
                 }
-                progressBar.visibility = View.VISIBLE
             }
         })
 
