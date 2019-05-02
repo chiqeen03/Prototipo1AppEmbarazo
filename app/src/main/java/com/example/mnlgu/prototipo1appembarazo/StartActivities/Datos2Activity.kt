@@ -1,5 +1,6 @@
 package com.example.mnlgu.prototipo1appembarazo.StartActivities
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_datos2.*
+import java.util.*
 
 class Datos2Activity : AppCompatActivity() {
 
@@ -22,6 +24,8 @@ class Datos2Activity : AppCompatActivity() {
         val db : FirebaseFirestore = FirebaseFirestore.getInstance() //database
 
         val mAuth = FirebaseAuth.getInstance()
+
+        var firebaseUser: FirebaseUser? = mAuth.currentUser
 
         //HashMap Auxiliar
         var user : MutableMap<String, Any> = HashMap()
@@ -38,7 +42,26 @@ class Datos2Activity : AppCompatActivity() {
         var regla: String
         var semanaGestacion: String
 
-        var firebaseUser: FirebaseUser? = mAuth.currentUser
+        //pick date for regla DOESNT WORK
+        //--------------------------------------------------------------------------------------------------------------
+        /*
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        datePickerButton.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(p0: View?) {
+                val dpd = DatePickerDialog(applicationContext, DatePickerDialog.OnDateSetListener{view, mYear, mMonth, mDay ->
+                    var aux: String = "" + year + "/" + month + "/" + day + ""
+                    reglaText.setText(aux)
+                }, year, month, day)
+                dpd.show()
+            }
+        })
+        */
+        //--------------------------------------------------------------------------------------------------------------
+
+
 
         crearUsuarioButton.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
