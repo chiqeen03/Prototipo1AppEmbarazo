@@ -7,16 +7,10 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.example.mnlgu.prototipo1appembarazo.Callbacks.MutableMapCallback
-import com.example.mnlgu.prototipo1appembarazo.FireBaseData.FireBaseHelper
+
 import com.example.mnlgu.prototipo1appembarazo.R
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 
-class FragmentSintomas : Fragment(){
-
-
+class FragmentMicronutrimentos : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -37,7 +31,6 @@ class FragmentSintomas : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calendario, container, false)
+        return inflater.inflate(R.layout.fragment_micronutrimentos, container, false)
     }
-
 }

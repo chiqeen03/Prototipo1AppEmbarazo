@@ -27,11 +27,6 @@ class FragmentDieta : Fragment(){
 
     }
 
-    //aqui se setea la info en los text fields
-    fun setData(){
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

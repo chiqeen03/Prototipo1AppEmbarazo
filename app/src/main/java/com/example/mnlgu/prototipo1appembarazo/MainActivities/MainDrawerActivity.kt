@@ -30,6 +30,7 @@ class MainDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     override fun onStart() {
         super.onStart()
 
+        //se checa si esta loggeado el usuario
         if(firebaseUser == null){
             updateUI(firebaseUser)
         }
@@ -43,16 +44,21 @@ class MainDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
         //authentication
         mAuth = FirebaseAuth.getInstance()
-
+        //usuario
         firebaseUser = mAuth?.currentUser
 
         //IMPORTANTE
+        //Para encontrar las variables del drawer
+        //--------------------------------------------------------------------------------------------------------------
         val whereIsView = findViewById<NavigationView>(R.id.nav_view)
         val headerLayout = whereIsView.getHeaderView(0)
         val userNameTextView = headerLayout.findViewById<TextView>(R.id.header_name)
         val userEmailTextView = headerLayout.findViewById<TextView>(R.id.header_email)
         val correoVerificadoTextView = headerLayout.findViewById<TextView>(R.id.header_correo_verificado)
+        //--------------------------------------------------------------------------------------------------------------
 
+        //no mover aca
+        //--------------------------------------------------------------------------------------------------------------
         val toggle = ActionBarDrawerToggle(
             this, drawer_layout, toolbar,
             R.string.navigation_drawer_open,
@@ -62,19 +68,21 @@ class MainDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+        //--------------------------------------------------------------------------------------------------------------
 
 
         //tabs and icons here
         //--------------------------------------------------------------------------------------------------------------
-        val icons = arrayOfNulls<Int>(5)
+        val icons = arrayOfNulls<Int>(6)
         icons[0] = R.drawable.bebe
         icons[1] = R.drawable.comida
         icons[2] = R.drawable.ejercicios
         icons[3] = R.drawable.sintomas
-        icons[4] = R.drawable.calendario
+        icons[4] = R.drawable.micronutrient
+        icons[5] = R.drawable.calendario
 
 
-        val adapter = MyAdapter(this, supportFragmentManager, 5)
+        val adapter = MyAdapter(this, supportFragmentManager, 6)
 
         viewPager!!.adapter = adapter
 
@@ -95,7 +103,7 @@ class MainDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
             }
             override fun onTabReselected(tab: TabLayout.Tab) {
-                viewPager!!.currentItem = tab.position
+
             }
         })
 

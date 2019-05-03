@@ -44,6 +44,7 @@ class Datos2Activity : AppCompatActivity() {
         var correo: String
         var peso: String
         var estatura: String
+        var edad: String
 
         //CHECAR NO SIRVE
         //Auxiliares del calendario
@@ -80,9 +81,10 @@ class Datos2Activity : AppCompatActivity() {
             correo = intent.getStringExtra("correo")
             peso = pesoText.text.toString()
             estatura = estaturaText.text.toString()
+            edad = edadText.text.toString()
 
             //booleanos auxiliares
-            var notEmpty : Boolean = checkAll(nombre, peso, estatura)
+            var notEmpty : Boolean = checkAll(nombre, peso, estatura, edad)
 
             if (notEmpty){
 
@@ -108,6 +110,7 @@ class Datos2Activity : AppCompatActivity() {
                 user.put("correo", correo)
                 user.put("peso", peso.toFloat())
                 user.put("estatura", estatura.toFloat())
+                user.put("edad", edad.toInt())
                 user.put("regla", dateAux)
 
                 progressBar.visibility = View.VISIBLE
@@ -132,28 +135,29 @@ class Datos2Activity : AppCompatActivity() {
             //si alguno esta vacio manda mensaje de que se llenen todos los campos
             else if (!notEmpty){
                 Toast.makeText(applicationContext, "Por favor llena todos los campos", Toast.LENGTH_SHORT).show()
-
-                //pone color rolo
-                requestFocusAll(nombre, peso, estatura)
+                requestFocusAll(nombre, peso, estatura, edad)
             }
         }
     }
 
-    fun checkAll(nombre: String, peso: String, estatura: String) : Boolean{
-        if(nombre.trim().length>0 && peso.trim().length>0 && estatura.trim().length>0)
+    fun checkAll(nombre: String, peso: String, estatura: String, edad: String) : Boolean{
+        if(nombre.trim().isNotEmpty() && peso.trim().isNotEmpty() && estatura.trim().isNotEmpty() && edad.trim().isNotEmpty())
             return true
         return false
     }
 
-    fun requestFocusAll(nombre: String, peso: String, estatura: String){
-        if(nombre.trim().length==0){
-            nameText.requestFocus()
+    fun requestFocusAll(nombre: String, peso: String, estatura: String, edad: String){
+        if(edad.trim().isEmpty()){
+            edadText.requestFocus()
         }
-        if(peso.trim().length==0){
+        if(estatura.trim().isEmpty()){
+            estaturaText.requestFocus()
+        }
+        if(peso.trim().isEmpty()){
             pesoText.requestFocus()
         }
-        if(estatura.trim().length==0){
-            estaturaText.requestFocus()
+        if(nombre.trim().isEmpty()){
+            nameText.requestFocus()
         }
     }
 

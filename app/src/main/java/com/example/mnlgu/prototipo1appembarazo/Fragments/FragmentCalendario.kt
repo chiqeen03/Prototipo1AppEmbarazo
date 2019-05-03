@@ -11,9 +11,18 @@ import com.example.mnlgu.prototipo1appembarazo.R
 
 class FragmentCalendario : Fragment() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        init()
+    }
+
+    //aca se toman los text fields
+    fun init(){
 
     }
 
