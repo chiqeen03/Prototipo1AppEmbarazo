@@ -13,6 +13,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.example.mnlgu.prototipo1appembarazo.Profile.ProfileActivity
 import com.example.mnlgu.prototipo1appembarazo.R
 import com.example.mnlgu.prototipo1appembarazo.StartActivities.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -94,7 +95,7 @@ class MainDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
             }
             override fun onTabReselected(tab: TabLayout.Tab) {
-
+                viewPager!!.currentItem = tab.position
             }
         })
 
@@ -103,8 +104,8 @@ class MainDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
         //muestra datos en el head del drawer
         //--------------------------------------------------------------------------------------------------------------
-        var userName = "name"
-        var userEmail = "email"
+        var userName: String
+        var userEmail : String
 
         if(firebaseUser!= null){
             userName = firebaseUser?.displayName.toString()
@@ -178,7 +179,8 @@ class MainDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_profile -> {
-
+                val intent = Intent(this@MainDrawerActivity, ProfileActivity::class.java)
+                startActivity(intent)
             }
             R.id.nav_logout -> {
                 FirebaseAuth.getInstance().signOut()
