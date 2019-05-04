@@ -21,9 +21,10 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/nameText"
-            android:hint="Nombre" android:layout_marginTop="60dp"
+            android:hint="Nombre" android:layout_marginTop="56dp"
             app:layout_constraintTop_toBottomOf="@+id/actualizar" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintHorizontal_bias="0.0"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,9 +32,10 @@
             android:ems="10"
             android:id="@+id/pesoText"
             android:hint="Peso en Kg (antes del embarazo)*"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintTop_toBottomOf="@+id/nameText" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintHorizontal_bias="0.0"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,9 +43,29 @@
             android:ems="10"
             android:id="@+id/estaturaText"
             android:hint="Estatura (en cm) *"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintTop_toBottomOf="@+id/pesoText" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintHorizontal_bias="0.0"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@+id/estaturaText">
+        <TextView
+                android:text="Ultima regla(aproximada)*"
+                android:layout_width="292dp"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:padding="8dp"
+                android:id="@+id/ultimaRegla"/>
+        <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:srcCompat="@drawable/picker"
+                android:id="@+id/calendarButton" android:layout_weight="1"/>
+    </LinearLayout>
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"

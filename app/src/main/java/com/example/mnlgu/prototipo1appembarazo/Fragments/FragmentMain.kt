@@ -74,11 +74,23 @@ class FragmentMain : Fragment(), MutableMapCallback {
         val estatura = datosUsuario.get("estatura").toString().toFloat()
         val IMC = calcularIMC(peso, estatura)
         val edad = datosUsuario.get("edad")
-        val semanaGestacion = diffBtwnRuleAndToday()
+        val semanaGestacion = diffBtwnRuleAndToday().toInt()
+        val trimestre = calcularTrimestre(semanaGestacion)
 
         //setea los text fields
         nameTextView.text = datosUsuario.get("nombre").toString()
         semanaTextView.text = semanaGestacion.toString()
+
+        //TODO: aplicar las formulas para mostrar la informacion de calorias, peso objetivo, etc
+    }
+
+    private fun calcularTrimestre(semanaGestacion: Int): Int {
+        when(semanaGestacion){
+            in 1..13 -> return 1
+            in 14..27 -> return 2
+            in 28..40 -> return 3
+            else -> return 0
+        }
     }
 
     private fun calcularIMC(peso: Float, estatura: Float): Float {
@@ -88,7 +100,8 @@ class FragmentMain : Fragment(), MutableMapCallback {
 
     private fun diffBtwnRuleAndToday() : Long{
         var diaAux = datosUsuario.get("reglaDia").toString()
-        var mesAux = datosUsuario.get("reglaMes").toString()
+        var mesAuxInt = datosUsuario.get("reglaMes").toString().toInt() + 1
+        var mesAux = mesAuxInt.toString()
         var anioAux = datosUsuario.get("reglaAnio").toString()
 
         if(diaAux.trim().length==1){

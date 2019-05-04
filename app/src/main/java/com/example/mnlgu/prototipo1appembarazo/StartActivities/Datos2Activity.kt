@@ -46,10 +46,10 @@ class Datos2Activity : AppCompatActivity() {
         var peso: String
         var estatura: String
         var edad: String
+
         var reglaDia: Int = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
         var reglaMes: Int = Calendar.getInstance().get(Calendar.MONTH)
         var reglaAnio: Int = Calendar.getInstance().get(Calendar.YEAR)
-
         //Auxiliares del calendario
         //https://www.youtube.com/watch?v=hwe1abDO2Ag
         //--------------------------------------------------------------------------------------------------------------
@@ -72,7 +72,7 @@ class Datos2Activity : AppCompatActivity() {
             reglaMes = month
             reglaAnio = year
 
-            val auxString = "" + reglaDia + "/" + (reglaMes+1) + "/" + reglaAnio
+            val auxString = "" + reglaDia + "/" + monthToString(reglaMes+1) + "/" + reglaAnio
 
             ultimaRegla.text = auxString
             //dateAux = setDate(yearAux, monthAux, dayAux)
@@ -116,7 +116,7 @@ class Datos2Activity : AppCompatActivity() {
                 user.put("estatura", estatura.toFloat())
                 user.put("edad", edad.toInt())
                 user.put("reglaDia", reglaDia)
-                user.put("reglaMes", reglaMes + 1)
+                user.put("reglaMes", reglaMes)
                 user.put("reglaAnio", reglaAnio)
 
                 progressBar.visibility = View.VISIBLE
@@ -167,11 +167,21 @@ class Datos2Activity : AppCompatActivity() {
         }
     }
 
-    fun setDate(year: Int, month:Int, day: Int): Date{
-
-        var calendar: Calendar = Calendar.getInstance()
-        calendar.set(year, month, day)
-
-        return calendar.time
+    private fun monthToString(month: Int): String{
+        when(month){
+            1 -> return "Enero"
+            2 -> return "Febrero"
+            3 -> return "Marzo"
+            4 -> return "Abril"
+            5 -> return "Mayo"
+            6 -> return "Junio"
+            7 -> return "Julio"
+            8 -> return "Agosto"
+            9 -> return "Septiembre"
+            10 -> return "Octubre"
+            11 -> return "Noviembre"
+            12 -> return "Diciembre"
+            else -> return ""
+        }
     }
 }

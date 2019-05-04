@@ -1,5 +1,8 @@
 package com.example.mnlgu.prototipo1appembarazo.Profile
 
+import android.app.DatePickerDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -14,7 +17,7 @@ import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_profile.*
 import java.lang.Double.parseDouble
-import java.util.HashMap
+import java.util.*
 
 class ProfileActivity : AppCompatActivity(), MutableMapCallback {
     override fun returnMutableMap(map: MutableMap<String, Any>) {
@@ -28,6 +31,11 @@ class ProfileActivity : AppCompatActivity(), MutableMapCallback {
     var helper : FireBaseHelper = FireBaseHelper.instance
     private lateinit var datosUsuario: MutableMap<String, Any>
     lateinit var db: FirebaseFirestore
+
+    lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
+    var reglaDia: Int = 0
+    var reglaMes: Int = 0
+    var reglaAnio: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +52,38 @@ class ProfileActivity : AppCompatActivity(), MutableMapCallback {
 
         var userMap : MutableMap<String, Any> = HashMap()
 
+
+        //Auxiliares del calendario
+
+        reglaDia = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        reglaMes = Calendar.getInstance().get(Calendar.MONTH)
+        reglaAnio = Calendar.getInstance().get(Calendar.YEAR)
+        //https://www.youtube.com/watch?v=hwe1abDO2Ag
+        //--------------------------------------------------------------------------------------------------------------
+        //dateAux = setDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH))
+
+        calendarButton.setOnClickListener {
+            val year: Int = datosUsuario.get("reglaAnio").toString().toInt()
+            val month: Int = datosUsuario.get("reglaMes").toString().toInt()
+            val day: Int = datosUsuario.get("reglaDia").toString().toInt()
+
+            val dialog = DatePickerDialog(this, android.R.style.Theme_DeviceDefault_Dialog, mDateSetListener, year, month, day)
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            dialog.show()
+        }
+
+        mDateSetListener = DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
+            reglaDia = day
+            reglaMes = month
+            reglaAnio = year
+
+            val auxString = "" + reglaDia + "/" + monthToString(reglaMes+1) + "/" + reglaAnio
+
+            ultimaRegla.text = auxString
+            //dateAux = setDate(yearAux, monthAux, dayAux)
+        }
+        //--------------------------------------------------------------------------------------------------------------
 
         if(user != null){
             helper.getDataFromFirestore("users", user?.uid.toString(), this )
@@ -82,6 +122,9 @@ class ProfileActivity : AppCompatActivity(), MutableMapCallback {
                     userMap.put("nombre", nameString)
                     userMap.put("peso", pesoString)
                     userMap.put("estatura", estaturaString)
+                    userMap.put("reglaDia", reglaDia)
+                    userMap.put("reglaMes", reglaMes)
+                    userMap.put("reglaAnio", reglaAnio)
                     progressBar.visibility = View.VISIBLE
 
                     db.collection("users")
@@ -112,5 +155,31 @@ class ProfileActivity : AppCompatActivity(), MutableMapCallback {
         nameText.setText(datosUsuario.get("nombre").toString())
         pesoText.setText(datosUsuario.get("peso").toString())
         estaturaText.setText(datosUsuario.get("estatura").toString())
+
+        //datos para setear el calendario cuando no se modifica
+        reglaDia = datosUsuario.get("reglaDia").toString().toInt()
+        reglaMes = datosUsuario.get("reglaMes").toString().toInt()
+        reglaAnio = datosUsuario.get("reglaAnio").toString().toInt()
+
+        val auxString = "" + reglaDia + "/" + monthToString(reglaMes+1) + "/" + reglaAnio
+        ultimaRegla.text = auxString
+    }
+
+    private fun monthToString(month: Int): String{
+        when(month){
+            1 -> return "Enero"
+            2 -> return "Febrero"
+            3 -> return "Marzo"
+            4 -> return "Abril"
+            5 -> return "Mayo"
+            6 -> return "Junio"
+            7 -> return "Julio"
+            8 -> return "Agosto"
+            9 -> return "Septiembre"
+            10 -> return "Octubre"
+            11 -> return "Noviembre"
+            12 -> return "Diciembre"
+            else -> return ""
+        }
     }
 }
