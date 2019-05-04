@@ -84,7 +84,7 @@
                 <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" app:srcCompat="@drawable/picker"
-                        android:id="@+id/imageButton" android:layout_weight="1"/>
+                        android:id="@+id/calendarButton" android:layout_weight="1"/>
             </LinearLayout>
             <TextView
                     android:text="* Si no estás segura de cualquiera de estos puntos, consulta a tu ginecólogo."

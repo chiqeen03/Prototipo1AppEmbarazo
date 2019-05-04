@@ -2,6 +2,8 @@ package com.example.mnlgu.prototipo1appembarazo.StartActivities
 
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
@@ -19,8 +21,7 @@ import java.util.*
 class Datos2Activity : AppCompatActivity() {
 
     lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
-    lateinit var dateDisplay : TextView
-    lateinit var dateAux: Date
+    //lateinit var dateAux: Date
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,33 +46,36 @@ class Datos2Activity : AppCompatActivity() {
         var peso: String
         var estatura: String
         var edad: String
+        var reglaDia: Int = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+        var reglaMes: Int = Calendar.getInstance().get(Calendar.MONTH)
+        var reglaAnio: Int = Calendar.getInstance().get(Calendar.YEAR)
 
-        //CHECAR NO SIRVE
         //Auxiliares del calendario
         //https://www.youtube.com/watch?v=hwe1abDO2Ag
         //--------------------------------------------------------------------------------------------------------------
-        dateAux = setDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH))
-        dateDisplay = findViewById(ultimaRegla.id)
+        //dateAux = setDate(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH))
 
-        dateDisplay.setOnClickListener {
-            var cal: Calendar = Calendar.getInstance()
-            var year: Int = cal.get(Calendar.YEAR)
-            var month: Int = cal.get(Calendar.MONTH)
-            var day: Int = cal.get(Calendar.DAY_OF_MONTH)
+        calendarButton.setOnClickListener {
+            val cal: Calendar = Calendar.getInstance()
+            val year: Int = cal.get(Calendar.YEAR)
+            val month: Int = cal.get(Calendar.MONTH)
+            val day: Int = cal.get(Calendar.DAY_OF_MONTH)
 
-            var dialog = DatePickerDialog(applicationContext, android.R.style.Theme, mDateSetListener, year, month, day)
+            val dialog = DatePickerDialog(this, android.R.style.Theme_DeviceDefault_Dialog, mDateSetListener, year, month, day)
+            dialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
             dialog.show()
         }
 
         mDateSetListener = DatePickerDialog.OnDateSetListener { datePicker, year, month, day ->
-            var dayAux = day
-            var monthAux = month
-            var yearAux = year
+            reglaDia = day
+            reglaMes = month
+            reglaAnio = year
 
-            var auxString = "" + dayAux + "/" + (monthAux+1) + "/" + yearAux
+            val auxString = "" + reglaDia + "/" + (reglaMes+1) + "/" + reglaAnio
 
             ultimaRegla.text = auxString
-            dateAux = setDate(yearAux, monthAux, dayAux)
+            //dateAux = setDate(yearAux, monthAux, dayAux)
         }
         //--------------------------------------------------------------------------------------------------------------
 
@@ -111,7 +115,9 @@ class Datos2Activity : AppCompatActivity() {
                 user.put("peso", peso.toFloat())
                 user.put("estatura", estatura.toFloat())
                 user.put("edad", edad.toInt())
-                user.put("regla", dateAux)
+                user.put("reglaDia", reglaDia)
+                user.put("reglaMes", reglaMes + 1)
+                user.put("reglaAnio", reglaAnio)
 
                 progressBar.visibility = View.VISIBLE
 
