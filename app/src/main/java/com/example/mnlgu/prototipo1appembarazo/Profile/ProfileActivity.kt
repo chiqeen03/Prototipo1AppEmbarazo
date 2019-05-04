@@ -23,6 +23,7 @@ class ProfileActivity : AppCompatActivity(), MutableMapCallback {
     override fun returnMutableMap(map: MutableMap<String, Any>) {
         datosUsuario = map
         setData()
+        progressBar.visibility = View.GONE
     }
 
     lateinit var mAuth: FirebaseAuth
@@ -42,6 +43,8 @@ class ProfileActivity : AppCompatActivity(), MutableMapCallback {
         setContentView(R.layout.activity_profile)
 
         supportActionBar?.hide()
+
+        progressBar.visibility = View.VISIBLE
 
         mAuth = FirebaseAuth.getInstance()
         user = mAuth.currentUser
