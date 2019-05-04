@@ -10,6 +10,28 @@
             android:layout_height="match_parent">
 
         <TextView
+                android:text="Nuestro peso objetivo para este trimestre es:"
+                android:layout_width="296dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.55"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:id="@+id/textView3"
+                android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/pesoSemanalText"/>
+        <TextView
+                android:text="Peso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pesoTrimestralText"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintHorizontal_bias="0.501"
+                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView3"/>
+        <TextView
                 android:text="Bienvenida"
                 android:gravity="center"
                 android:layout_width="match_parent"
@@ -44,17 +66,6 @@
                 android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/nameText"
                 app:layout_constraintStart_toEndOf="@+id/textView2" android:layout_marginStart="8dp"
                 app:layout_constraintHorizontal_bias="0.0"/>
-        <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                app:srcCompat="@drawable/feto"
-                android:id="@+id/fotoFeto"
-                android:layout_marginBottom="32dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp"/>
         <TextView
                 android:text="Recuerda que la energía es muy importante. Hoy tenemos que consumir:"
                 android:layout_width="296dp"
@@ -77,6 +88,41 @@
                 app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView5"
                 app:layout_constraintHorizontal_bias="0.501"/>
+
+        <TextView
+                android:text="Nuestro peso objetivo para esta semana es:"
+                android:layout_width="296dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.55"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:id="@+id/textView6" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/caloriasText"/>
+
+        <TextView
+                android:text="Peso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pesoSemanalText"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintHorizontal_bias="0.501" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView6"/>
+        <Button
+                android:text="Ver bebé"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/verBebe"
+                android:layout_marginTop="36dp"
+                app:layout_constraintTop_toBottomOf="@+id/pesoTrimestralText"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"/>
 
     </android.support.constraint.ConstraintLayout>
 
