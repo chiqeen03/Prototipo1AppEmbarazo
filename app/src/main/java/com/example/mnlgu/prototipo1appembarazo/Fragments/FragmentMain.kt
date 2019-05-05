@@ -326,22 +326,19 @@ class FragmentMain : Fragment(), MutableMapCallback {
 
 
     private fun showPopUp(imgSrc: Int, textSrc: String){
-        val closeButton: Button
-        val fetusImage: ImageView
-        val fetusText: TextView
-
         //esto se tiene que cambiar para cada vista
-        myDialog.setContentView(R.layout.vista_bebe)
+        myDialog.setContentView(R.layout.popup_bebe)
 
-        closeButton = myDialog.findViewById(R.id.closeButton)
+        val closeButton: Button = myDialog.findViewById(R.id.closeButton)
+        val fetusImage: ImageView = myDialog.findViewById(R.id.fetoImagen)
+        val fetusText: TextView = myDialog.findViewById(R.id.fetoTexto)
+
         closeButton.setOnClickListener {
             myDialog.dismiss()
         }
 
-        fetusImage = myDialog.findViewById(R.id.fetoImagen)
         fetusImage.setImageResource(imgSrc)
 
-        fetusText = myDialog.findViewById(R.id.fetoTexto)
         fetusText.setText(textSrc)
 
         myDialog.show()
@@ -351,13 +348,14 @@ class FragmentMain : Fragment(), MutableMapCallback {
     Pop up generico
 
     private fun showPopUp(){
-        val closeButton: Button
         //esto se tiene que cambiar para cada vista
         myDialog.setContentView(R.layout.vista_bebe)
-        closeButton = myDialog.findViewById(R.id.closeButton)
+
+        val closeButton: Button = myDialog.findViewById(R.id.closeButton)
         closeButton.setOnClickListener {
             myDialog.dismiss()
         }
+
         myDialog.show()
     }
     */

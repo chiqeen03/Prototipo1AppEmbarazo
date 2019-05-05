@@ -2,10 +2,14 @@ package com.example.mnlgu.prototipo1appembarazo.DB
 
 class AuxiliarDatabase() {
 
-    val babyInfoDB: MutableMap<Int, String> = HashMap()
+    var babyInfoDB: MutableMap<Int, String>
+    var ejerciciosDB: MutableMap<String, String>
 
     init {
+        babyInfoDB = HashMap()
+        ejerciciosDB = HashMap()
         fillBabyInfoDB()
+        fillExerciseInfoDB()
     }
 
     fun fillBabyInfoDB(){
@@ -168,6 +172,17 @@ class AuxiliarDatabase() {
                     "En el momento del nacimiento, el bebé tiene un total de 300 huesos. Algunos huesos se fusionarán más tarde, para que terminen siendo 206 huesos.\n" +
                     "\n" +
                     "Ya presenta reflejos no aprendidos, pero esenciales para la supervivencia\n")
+    }
+
+    fun fillExerciseInfoDB(){
+        ejerciciosDB.put("descripcion", "Realizar ejercicio durante tu embarazo mejorará tu condición física, tu estado de ánimo, controlará tu ganancia de peso, mejora la digestión y el estreñimiento y evita que desarrolles diabetes gestacional. \n" +
+                "\n" +
+                "*Contrario a lo que se cree, el ejercicio durante el embarazo no modifica la talla o el peso del bebé, ni lo pone en peligro. Sin embargo, debes consultar a tu doctor antes de realizar ejercicio ya que algunos padecimientos como enfermedad cardiaca, pre-eclampsia, riesgo de parto prematuro, entre otras, contraindican el ejercicio en el embarazo.\n")
+        ejerciciosDB.put("aerobicos", "Debes realizar entre 150- 300 minutos de ejercicio moderado aeróbico a la semana. \n" +
+                "*Ten cuidado con los ejercicio que comprometen las articulaciones como correr, fútbol y tenis.\n")
+        ejerciciosDB.put("fuerza", "Entrena fuerza 3 veces a la semana por 30 minutos. Puedes utilizar pesas pero realiza muchas repeticiones con bajo peso.")
+        ejerciciosDB.put("consideraciones", "Ten cuidado con los deportes que aumentan el riesgo de caídas y deportes extremos como paracaidismo, surfear y deportes de contacto como box, taekwondo y karate. \n" +
+                "El buceo y la equitación son clasificados como deportes prohibidos en el embarazo.\n")
     }
 
 }
