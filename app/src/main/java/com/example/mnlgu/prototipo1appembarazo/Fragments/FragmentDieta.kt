@@ -1,24 +1,15 @@
 package com.example.mnlgu.prototipo1appembarazo.Fragments
 
 import android.app.Dialog
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import com.example.mnlgu.prototipo1appembarazo.Callbacks.MutableMapCallback
+import android.widget.TextView
 import com.example.mnlgu.prototipo1appembarazo.DB.AuxiliarDatabase
-import com.example.mnlgu.prototipo1appembarazo.DietaActivities.DietaEvitar
-import com.example.mnlgu.prototipo1appembarazo.DietaActivities.DietaGrasas
-import com.example.mnlgu.prototipo1appembarazo.DietaActivities.DietaHidratosDeCarbono
-import com.example.mnlgu.prototipo1appembarazo.DietaActivities.DietaProteina
-import com.example.mnlgu.prototipo1appembarazo.FireBaseData.FireBaseHelper
-import com.example.mnlgu.prototipo1appembarazo.MainActivities.MainDrawerActivity
 import com.example.mnlgu.prototipo1appembarazo.R
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 
 class FragmentDieta : Fragment(){
 
@@ -27,9 +18,15 @@ class FragmentDieta : Fragment(){
     lateinit var grasasButton: Button
     lateinit var evitarButton: Button
 
+    val auxDB: AuxiliarDatabase = AuxiliarDatabase()
+
+    lateinit var myDialog: Dialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+        myDialog = Dialog(context!!)
     }
 
     override fun onStart() {
@@ -41,31 +38,169 @@ class FragmentDieta : Fragment(){
     fun init(){
         hidratosDeCarbonoButton = view!!.findViewById(R.id.carbohidratosButton)
         hidratosDeCarbonoButton.setOnClickListener {
-            val intent = Intent(context!!, DietaHidratosDeCarbono::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
+            showPopUpHidratosDeCarbono()
+
         }
 
         proteinasButton = view!!.findViewById(R.id.proteinasButton)
         proteinasButton.setOnClickListener {
-            val intent = Intent(context!!, DietaProteina::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
+            showPopUpProteinas()
         }
 
         grasasButton = view!!.findViewById(R.id.grasasButton)
         grasasButton.setOnClickListener {
-            val intent = Intent(context!!, DietaGrasas::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
+            showPopUpGrasas()
         }
 
         evitarButton = view!!.findViewById(R.id.evitarButton)
         evitarButton.setOnClickListener {
-            val intent = Intent(context!!, DietaEvitar::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
+            showPopUpAEvitar()
         }
+    }
+
+    private fun showPopUpHidratosDeCarbono(){
+        //esto se tiene que cambiar para cada vista
+        myDialog.setContentView(R.layout.popup_dieta_hidratos_carbono)
+
+        val closeButton: Button = myDialog.findViewById(R.id.closeButtonCarboHidratos)
+        closeButton.setOnClickListener {
+            myDialog.dismiss()
+        }
+
+        val fibraText: TextView = myDialog.findViewById(R.id.fibraText)
+        fibraText.setOnClickListener {
+            showInfo("Fibra", auxDB.dietaHidratosDeCarbono.get("fibra").toString())
+        }
+
+        val frutasYVerdurasText: TextView = myDialog.findViewById(R.id.frutasYVerdurasText)
+        frutasYVerdurasText.setOnClickListener {
+            showInfo("Frutas y Verduras", auxDB.dietaHidratosDeCarbono.get("frutas y verduras").toString())
+        }
+
+        val leguminosasText: TextView = myDialog.findViewById(R.id.leguminosasText)
+        leguminosasText.setOnClickListener {
+            showInfo("Leguminosas", auxDB.dietaHidratosDeCarbono.get("leguminosas").toString())
+        }
+
+        val azucaresText: TextView = myDialog.findViewById(R.id.azucaresText)
+        azucaresText.setOnClickListener {
+            showInfo("Azúcares", auxDB.dietaHidratosDeCarbono.get("azucares").toString())
+        }
+
+        myDialog.show()
+    }
+
+    private fun showPopUpProteinas(){
+        //esto se tiene que cambiar para cada vista
+        myDialog.setContentView(R.layout.popup_dieta_proteinas)
+
+        val closeButton: Button = myDialog.findViewById(R.id.closeButtonProteinas)
+        closeButton.setOnClickListener {
+            myDialog.dismiss()
+        }
+
+        val carneRojaText: TextView = myDialog.findViewById(R.id.carneRojaText)
+        carneRojaText.setOnClickListener {
+            showInfo("Carnes Rojas", auxDB.dietaProteinas.get("carnes rojas").toString())
+        }
+
+        val pescadoText: TextView = myDialog.findViewById(R.id.pescadoText)
+        pescadoText.setOnClickListener {
+            showInfo("Pescado", auxDB.dietaProteinas.get("pescado").toString())
+        }
+
+        val lacteosText: TextView = myDialog.findViewById(R.id.lacteosText)
+        lacteosText.setOnClickListener {
+            showInfo("Lacteos", auxDB.dietaProteinas.get("lacteos").toString())
+        }
+
+        val embutidosText: TextView = myDialog.findViewById(R.id.embutidosText)
+        embutidosText.setOnClickListener {
+            showInfo("Embutidos", auxDB.dietaProteinas.get("embutidos").toString())
+        }
+
+        val otrosText: TextView = myDialog.findViewById(R.id.otrosText)
+        otrosText.setOnClickListener {
+            showInfo("Otros", auxDB.dietaProteinas.get("otros").toString())
+        }
+
+        myDialog.show()
+    }
+
+    private fun showPopUpGrasas(){
+        //esto se tiene que cambiar para cada vista
+        myDialog.setContentView(R.layout.popup_dieta_grasas)
+
+        val closeButton: Button = myDialog.findViewById(R.id.closeButtonGrasas)
+        closeButton.setOnClickListener {
+            myDialog.dismiss()
+        }
+
+        val omega3Text: TextView = myDialog.findViewById(R.id.omega3Text)
+        omega3Text.setOnClickListener {
+            showInfo("Omega 3 (ácido a- linolénico)", auxDB.dietaGrasas.get("omega 3").toString())
+        }
+
+        val omega6Text: TextView = myDialog.findViewById(R.id.omega6Text)
+        omega6Text.setOnClickListener {
+            showInfo("Omega 6 (ácido linoleico)", auxDB.dietaGrasas.get("omega 6").toString())
+        }
+
+        val saturadaText: TextView = myDialog.findViewById(R.id.saturadaText)
+        saturadaText.setOnClickListener {
+            showInfo("Saturadas", auxDB.dietaGrasas.get("saturadas").toString())
+        }
+
+        val transText: TextView = myDialog.findViewById(R.id.transText)
+        transText.setOnClickListener {
+            showInfo("Trans", auxDB.dietaGrasas.get("trans").toString())
+        }
+
+        myDialog.show()
+    }
+
+    private fun showPopUpAEvitar(){
+        //esto se tiene que cambiar para cada vista
+        myDialog.setContentView(R.layout.popup_dieta_a_evitar)
+
+        val closeButton: Button = myDialog.findViewById(R.id.closeButtonAEvitar)
+        closeButton.setOnClickListener {
+            myDialog.dismiss()
+        }
+
+        val alcoholText: TextView = myDialog.findViewById(R.id.alcoholText)
+        alcoholText.setOnClickListener {
+            showInfo("Alcohol", auxDB.dietaAEvitar.get("alcohol").toString())
+        }
+
+        val cafeText: TextView = myDialog.findViewById(R.id.cafeText)
+        cafeText.setOnClickListener {
+            showInfo("Café", auxDB.dietaAEvitar.get("cafe").toString())
+        }
+
+        myDialog.show()
+    }
+
+    private fun showInfo(titulo: String, info: String){
+        myDialog.setContentView(R.layout.popup_dieta_info)
+
+        val closeButton: Button = myDialog.findViewById(R.id.closeInfo)
+        closeButton.setOnClickListener {
+            myDialog.dismiss()
+        }
+
+        val tituloInfo: TextView = myDialog.findViewById(R.id.tituloInfo)
+        tituloInfo.text = titulo
+
+        val infoText: TextView = myDialog.findViewById(R.id.infoText)
+        infoText.text = info
+
+        val regresar: Button = myDialog.findViewById(R.id.backInfo)
+        regresar.setOnClickListener {
+            showPopUpHidratosDeCarbono()
+        }
+
+        myDialog.show()
     }
 
     override fun onCreateView(

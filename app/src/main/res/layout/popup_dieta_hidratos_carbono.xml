@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools" android:layout_width="350dp"
+                                             android:layout_height="wrap_content"
+                                             android:background="@color/grey"
+                                             android:padding="5dp"
+                                             android:layout_gravity="center">
+
+    <TextView
+            android:text="Hidratos de Carbono"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tituloCarbohidratos" android:layout_marginTop="24dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="12dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="12dp"
+            android:textSize="24sp" app:layout_constraintHorizontal_bias="0.501"
+            android:gravity="center"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            android:id="@+id/linearLayout" android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/infoText">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fibraText"
+                android:textSize="18sp"
+                android:gravity="center" tools:layout_editor_absoluteY="140dp" tools:layout_editor_absoluteX="155dp"
+                android:text="Fibra"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/frutasYVerdurasText"
+                android:textSize="18sp"
+                android:gravity="center" tools:layout_editor_absoluteY="201dp" tools:layout_editor_absoluteX="105dp"
+                android:text="Frutas y Verduras"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/leguminosasText"
+                android:textSize="18sp"
+                android:gravity="center" tools:layout_editor_absoluteY="260dp" tools:layout_editor_absoluteX="122dp"
+                android:text="Leguminosas"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/azucaresText"
+                android:textSize="18sp"
+                android:gravity="center" tools:layout_editor_absoluteY="323dp" tools:layout_editor_absoluteX="138dp"
+                android:text="Azúcares"/>
+    </LinearLayout>
+    <Button
+            android:text="Cerrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/closeButtonCarboHidratos" android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginTop="42dp"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"/>
+    <TextView
+            android:text="Se recomienda que la mayoría de las calorías de tu dieta (45-65%) provengan de frutas, leguminosas, cereales y granos integrales ya que son la principal fuente de energía para tí y tu bebé."
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/infoText"
+            android:layout_marginTop="18dp"
+            app:layout_constraintTop_toBottomOf="@+id/tituloCarbohidratos"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            android:gravity="center"/>
+</android.support.constraint.ConstraintLayout>

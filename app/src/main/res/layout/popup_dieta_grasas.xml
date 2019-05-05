@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools" android:layout_width="350dp"
+                                             android:layout_height="wrap_content"
+                                             android:background="@color/grey"
+                                             android:padding="5dp"
+                                             android:layout_gravity="center">
+
+    <TextView
+            android:text="Grasas"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tituloGrasas" android:layout_marginTop="24dp"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="12dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="12dp"
+            android:textSize="24sp" app:layout_constraintHorizontal_bias="0.501"
+            android:gravity="center"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            android:id="@+id/linearLayout" android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/infoText">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/omega3Text"
+                android:textSize="18sp"
+                android:gravity="center" tools:layout_editor_absoluteY="140dp" tools:layout_editor_absoluteX="155dp"
+                android:text="Omega 3 (ácido a- linolénico)"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/omega6Text"
+                android:textSize="18sp"
+                android:gravity="center" tools:layout_editor_absoluteY="201dp" tools:layout_editor_absoluteX="105dp"
+                android:text="Omega 6 (ácido linoleico)"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/saturadaText"
+                android:textSize="18sp"
+                android:gravity="center" tools:layout_editor_absoluteY="260dp" tools:layout_editor_absoluteX="122dp"
+                android:text="Saturada"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/transText"
+                android:textSize="18sp"
+                android:gravity="center" tools:layout_editor_absoluteY="323dp" tools:layout_editor_absoluteX="138dp"
+                android:text="Trans"/>
+    </LinearLayout>
+    <Button
+            android:text="Cerrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/closeButtonGrasas" android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginTop="42dp"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"/>
+    <TextView
+            android:text="El 20-30% de las calorías que consumes en el día, deben de provenir de las grasas. "
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/infoText"
+            android:layout_marginTop="18dp"
+            app:layout_constraintTop_toBottomOf="@+id/tituloGrasas"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            android:gravity="center"/>
+</android.support.constraint.ConstraintLayout>

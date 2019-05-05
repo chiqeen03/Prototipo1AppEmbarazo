@@ -4,12 +4,25 @@ class AuxiliarDatabase() {
 
     var babyInfoDB: MutableMap<Int, String>
     var ejerciciosDB: MutableMap<String, String>
+    var dietaHidratosDeCarbono: MutableMap<String, String>
+    var dietaProteinas: MutableMap<String, String>
+    var dietaGrasas: MutableMap<String, String>
+    var dietaAEvitar: MutableMap<String, String>
 
     init {
         babyInfoDB = HashMap()
         ejerciciosDB = HashMap()
+        dietaHidratosDeCarbono = HashMap()
+        dietaProteinas = HashMap()
+        dietaGrasas = HashMap()
+        dietaAEvitar = HashMap()
+
         fillBabyInfoDB()
         fillExerciseInfoDB()
+        fillHidratosDeCarbono()
+        fillProteinas()
+        fillGrasas()
+        fillAEvitar()
     }
 
     fun fillBabyInfoDB(){
@@ -183,6 +196,42 @@ class AuxiliarDatabase() {
         ejerciciosDB.put("fuerza", "Entrena fuerza 3 veces a la semana por 30 minutos. Puedes utilizar pesas pero realiza muchas repeticiones con bajo peso.")
         ejerciciosDB.put("consideraciones", "Ten cuidado con los deportes que aumentan el riesgo de caídas y deportes extremos como paracaidismo, surfear y deportes de contacto como box, taekwondo y karate. \n" +
                 "El buceo y la equitación son clasificados como deportes prohibidos en el embarazo.\n")
+    }
+
+    fun fillHidratosDeCarbono(){
+        dietaHidratosDeCarbono.put("fibra", "Se recomienda ingerir fibra diario de las leguminosas, cereales integrales, verduras y frutas. La fibra previene el estreñimiento, la obesidad, diabetes,disminuye los niveles de colesterol LDL “malo” y produce saciedad.\n")
+        dietaHidratosDeCarbono.put("frutas y verduras", "Se recomienda que comas por lo menos 5 frutas y verduras de diferentes colores para que obtengas todos los antioxidantes necesarios.\n" +
+                "\n" +
+                "\t-Frutas y verduras rojas: Protegen contra enfermedades cardiovasculares, cáncer y envejecimiento.\n" +
+                "\t-Frutas y verduras verdes: Protegen la visión, contienen vitamina C, vitamina K y ácido fólico. (dar click y lo lleva a la parte de ácido fólico en micronutrimentos a cuidar). \n" +
+                "\t-Frutas y verduras naranja: Contienen vitamina A (dar click y lo lleva a la parte de vitamina A en micronutrimentos a cuidar), ayudan a conservar la visión, piel sana y mejoran el sistema inmunitario. \n" +
+                "\t-Frutas y verduras moradas: Disminuyen el riesgo de cáncer, envejecimiento y preservan la memoria. \n" +
+                "\t-Frutas y verduras blancas: Controlan los niveles de glucosa y lípidos en la sangre, son anticancerígenas y antisépticas. ")
+        dietaHidratosDeCarbono.put("leguminosas", "La recomendación es ingerir 2 porciones al día de leguminosas como frijoles, garbanzo, lentejas, chícharos, habas, ejotes. Son ricas en fibra, proteína, vitamina B1 y B3 y magnesio.")
+        dietaHidratosDeCarbono.put("azucares", "Debes de controlar la cantidad de azúcares añadidos que ingieres. La recomendación es de no más de  25 gramos al día, lo que se traduce a no más de 5 cucharaditas de azúcar diarias (ya que 1 cucharadita equivale a 5 gramos de azúcar). Los productos industrializados que más azúcar contienen son: jugos, refrescos, cereales de desayuno, pan dulce, cerveza, dulces, postres y pan y cereales blancos (no integrales).")
+    }
+
+    fun fillProteinas() {
+        dietaProteinas.put("pescado", "Deberías de ingerir 240 gramos de pescado a la semana. Es una gran fuente de zinc, proteína y omega 3.")
+        dietaProteinas.put("lacteos", "Se recomienda el consumo de 3 vasos de leche baja en grasa al día ya que aporta proteína y es rica en calcio y vitamina D.\n" +
+                "El queso y el yogurt también aportan proteína, calcio y vitamina D pero suelen contener más grasas que la leche. \n")
+        dietaProteinas.put("embutidos", "El consumo de embutidos como jamón, salchicha, chorizo fiambre, mortadela, pepperoni, jamón serrano debe de ser evitado. Hay evidencia de daño cardiovascular y cáncer al consumir estos productos. Si los consumes, procura que no sobrepase las 2 porciones a la semana.")
+        dietaProteinas.put("otros", "Pollo, puerco, cabrito, calamar, camarón, huevo, jaiba, langosta, pavo, conejo.")
+    }
+
+    fun fillGrasas(){
+        dietaGrasas.put("omega 3", "El omega 3 es una grasa poliinsaturada (“buena”) que aporta beneficios tanto a la mamá como al bebé. El omega 3 reduce la inflamación, reduce el riesgo de enfermedades cardiovasculares, es importante para el desarrollo neurológico, mejoran la visión y se ha visto que, los hijos de las madres que consumieron omega 3 en el embarazo, tienen niveles de inteligencia más elevados. Es por eso que te recomendamos que comas por lo menos, 2 veces a la semana pescado o mariscos. ")
+        dietaGrasas.put("omega 6", "El omega 6 es una grasa poliinsaturada (“buena”) que reduce el riesgo de enfermedades cardiovasculares, disminuye los niveles de colesterol total y LDL (“malo”). Lo puedes consumir en aceites vegetales como el de cártamo, maíz, girasol, aguacate y soya.")
+        dietaGrasas.put("saturadas", "Las grasas saturadas se encuentran principalmente en grasas animales sólidas o en alimentos industrializados. Tu dieta debe de ser baja en este tipo de grasas ya que incrementa los niveles de colesterol LDL (“malo”) y puede bloquear las arterias. Además, su consumo excesivo está relacionado con el desarrollo de obesidad. El helado, la mantequilla, la leche entera, consumir mucha carne de res, crema, aderezos y quesos son altos en este tipo de grasa.")
+        dietaGrasas.put("trans", "Las grasas trans son utilizadas por la industria, por lo que no existen en los alimentos naturales. El proceso consiste en hacer un aceite líquido, sólido para disminuir gastos. Debes evitar ingerir alimentos con este tipo de grasas ya que aumentan el riesgo de desarrollar enfermedades cardiovasculares y cáncer.")
+    }
+
+    fun fillAEvitar(){
+        dietaAEvitar.put("alcohol", "La ingestión de alcohol es teratogénico. Esto quiere decir, que puede causar un defecto de nacimiento al bebé. Los bebés desarrollan el síndrome alcohólico fetal cuando la madre bebe alcohol durante su embarazo y se caracteriza de:\n" +
+                "\t-Retraso en el crecimiento \n" +
+                "\t-Crecimiento pobre del cerebro del bebé\n" +
+                "\t-Deformidades faciales y articulares\n")
+        dietaAEvitar.put("cafe", "Se recomienda que el consumo diario de cafeína no exceda las 2 tazas diarias ya que puede elevar el riesgo de aborto y bajo peso del recién nacido.")
     }
 
 }

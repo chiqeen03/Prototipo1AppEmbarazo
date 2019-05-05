@@ -34,14 +34,7 @@
         </activity>
         <activity android:name=".Profile.ProfileActivity">
         </activity>
-        <activity android:name=".DietaActivities.DietaHidratosDeCarbono">
-        </activity>
-        <activity android:name=".DietaActivities.DietaProteina">
-        </activity>
-        <activity android:name=".DietaActivities.DietaGrasas">
-        </activity>
-        <activity android:name=".DietaActivities.DietaEvitar">
-        </activity>
+
     </application>
 
 </manifest>
