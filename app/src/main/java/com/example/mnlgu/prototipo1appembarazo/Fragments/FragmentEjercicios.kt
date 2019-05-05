@@ -29,7 +29,7 @@ class FragmentEjercicios : Fragment(){
 
         ejerciciosDB = auxDB.ejerciciosDB
 
-        myDialog = Dialog(context)
+        myDialog = Dialog(context!!)
     }
 
     override fun onStart() {
@@ -76,6 +76,22 @@ class FragmentEjercicios : Fragment(){
 
         myDialog.show()
     }
+
+    /*
+    Pop up generico
+
+    private fun showPopUp(){
+        //esto se tiene que cambiar para cada vista
+        myDialog.setContentView(R.layout.vista_bebe)
+
+        val closeButton: Button = myDialog.findViewById(R.id.closeButton)
+        closeButton.setOnClickListener {
+            myDialog.dismiss()
+        }
+
+        myDialog.show()
+    }
+    */
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

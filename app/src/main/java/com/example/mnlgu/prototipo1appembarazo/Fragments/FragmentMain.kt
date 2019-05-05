@@ -62,7 +62,7 @@ class FragmentMain : Fragment(), MutableMapCallback {
         }
 
         //si va en un fragment se usa context y si es en una actividad se usa this
-        myDialog = Dialog(context)
+        myDialog = Dialog(context!!)
 
         //se jala la db
         babyTextDB = auxDB.babyInfoDB
