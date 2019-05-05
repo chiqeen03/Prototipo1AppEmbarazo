@@ -8,6 +8,8 @@ class AuxiliarDatabase() {
     var dietaProteinas: MutableMap<String, String>
     var dietaGrasas: MutableMap<String, String>
     var dietaAEvitar: MutableMap<String, String>
+    var sintomasDB: MutableMap<String, String>
+    var micronutrimentosDB: MutableMap<String, String>
 
     init {
         babyInfoDB = HashMap()
@@ -16,6 +18,8 @@ class AuxiliarDatabase() {
         dietaProteinas = HashMap()
         dietaGrasas = HashMap()
         dietaAEvitar = HashMap()
+        sintomasDB = HashMap()
+        micronutrimentosDB = HashMap()
 
         fillBabyInfoDB()
         fillExerciseInfoDB()
@@ -23,6 +27,8 @@ class AuxiliarDatabase() {
         fillProteinas()
         fillGrasas()
         fillAEvitar()
+        fillSintomas()
+        fillMicronutrimentos()
     }
 
     fun fillBabyInfoDB(){
@@ -232,6 +238,24 @@ class AuxiliarDatabase() {
                 "\t-Crecimiento pobre del cerebro del bebé\n" +
                 "\t-Deformidades faciales y articulares\n")
         dietaAEvitar.put("cafe", "Se recomienda que el consumo diario de cafeína no exceda las 2 tazas diarias ya que puede elevar el riesgo de aborto y bajo peso del recién nacido.")
+    }
+
+    fun fillSintomas(){
+        sintomasDB.put("estrenimiento", "Recuerda ingerir suficiente fibra a través del consumo de cereales integrales, frutas, verduras y leguminosas. La fibra facilita la defecación ya que aumenta los movimientos intestinales y hace las heces más voluminosas y menos consistentes. \n" +
+                "\n" +
+                "Tomar agua también ayuda a hacer las heces más voluminosas y mejora el tránsito intestinal.\n" +
+                "\n" +
+                "Por último, te recomendamos estar en movimiento. Hacer actividad física ayuda con los movimientos intestinales.\n")
+        sintomasDB.put("acidez", "Es importante no dormir con el estómago vacío pero tampoco cenar de más. Sí la acidez es muy molesta, es recomendable dormir semi acostada.\n")
+        sintomasDB.put("nauseas", "Es importante no dormir con el estómago vacío pero tampoco cenar de más. Sí la acidez es muy molesta, es recomendable dormir semi acostada.\n")
+    }
+
+    fun fillMicronutrimentos(){
+        micronutrimentosDB.put("hierro", "Importante para el desarrollo neurológico del bebé, transporte de oxígeno y prevención de anemia por deficiencia de hierro. Puedes consumirlo a través de la carne roja, sin embargo, la cantidad que requieres es muy elevada debido a tu embarazo por lo que la comida no es suficiente. Recuerda tomar tu suplemento.")
+        micronutrimentosDB.put("acido folico", "Es esencial para el óptimo desarrollo cerebral de tu bebé y la síntesis de ADN. Puedes obtenerlo de las verduras de hoja verde. Pero el requerimiento es muy elevado debido al embarazo, por lo que es de suma importancia que tomes el suplemento diario. ")
+        micronutrimentosDB.put("vitamina a", "La vitamina a se encuentra en todas las frutas y verduras de color naranja y amarillo y en alimentos de origen animal. Esta vitamina juega un papel importante en el desarrollo de visión nocturna de tu bebé.")
+        micronutrimentosDB.put("calcio y vitamina d", "El calcio es de suma importancia para formar los huesos  del bebé. La función de la vitamina D es asegurar que el calcio se absorba para que cumpla su función. Además, se ha encontrado que personas con niveles óptimos de calcio, disminuye el riesgo de tensión arterial alta. Ambos los puedes encontrar en altas concentraciones en la leche baja en grasa. ")
+        micronutrimentosDB.put("zinc", "El zinc es importante para sintetizar los músculos y ADN de tu bebé. Al ingerir pescado, te aseguras de que tu bebé está recibiendo los micronutrimentos necesarios para su desarrollo.")
     }
 
 }
