@@ -69,22 +69,22 @@ class FragmentDieta : Fragment(){
 
         val fibraText: TextView = myDialog.findViewById(R.id.fibraText)
         fibraText.setOnClickListener {
-            showInfo("Fibra", auxDB.dietaHidratosDeCarbono.get("fibra").toString())
+            showInfo("Fibra", auxDB.dietaHidratosDeCarbono.get("fibra").toString(), 0)
         }
 
         val frutasYVerdurasText: TextView = myDialog.findViewById(R.id.frutasYVerdurasText)
         frutasYVerdurasText.setOnClickListener {
-            showInfo("Frutas y Verduras", auxDB.dietaHidratosDeCarbono.get("frutas y verduras").toString())
+            showInfo("Frutas y Verduras", auxDB.dietaHidratosDeCarbono.get("frutas y verduras").toString(), 0)
         }
 
         val leguminosasText: TextView = myDialog.findViewById(R.id.leguminosasText)
         leguminosasText.setOnClickListener {
-            showInfo("Leguminosas", auxDB.dietaHidratosDeCarbono.get("leguminosas").toString())
+            showInfo("Leguminosas", auxDB.dietaHidratosDeCarbono.get("leguminosas").toString(), 0)
         }
 
         val azucaresText: TextView = myDialog.findViewById(R.id.azucaresText)
         azucaresText.setOnClickListener {
-            showInfo("Azúcares", auxDB.dietaHidratosDeCarbono.get("azucares").toString())
+            showInfo("Azúcares", auxDB.dietaHidratosDeCarbono.get("azucares").toString(), 0)
         }
 
         myDialog.show()
@@ -101,27 +101,27 @@ class FragmentDieta : Fragment(){
 
         val carneRojaText: TextView = myDialog.findViewById(R.id.carneRojaText)
         carneRojaText.setOnClickListener {
-            showInfo("Carnes Rojas", auxDB.dietaProteinas.get("carnes rojas").toString())
+            showInfo("Carnes Rojas", auxDB.dietaProteinas.get("carnes rojas").toString(), 1)
         }
 
         val pescadoText: TextView = myDialog.findViewById(R.id.pescadoText)
         pescadoText.setOnClickListener {
-            showInfo("Pescado", auxDB.dietaProteinas.get("pescado").toString())
+            showInfo("Pescado", auxDB.dietaProteinas.get("pescado").toString(), 1)
         }
 
         val lacteosText: TextView = myDialog.findViewById(R.id.lacteosText)
         lacteosText.setOnClickListener {
-            showInfo("Lacteos", auxDB.dietaProteinas.get("lacteos").toString())
+            showInfo("Lacteos", auxDB.dietaProteinas.get("lacteos").toString(), 1)
         }
 
         val embutidosText: TextView = myDialog.findViewById(R.id.embutidosText)
         embutidosText.setOnClickListener {
-            showInfo("Embutidos", auxDB.dietaProteinas.get("embutidos").toString())
+            showInfo("Embutidos", auxDB.dietaProteinas.get("embutidos").toString(), 1)
         }
 
         val otrosText: TextView = myDialog.findViewById(R.id.otrosText)
         otrosText.setOnClickListener {
-            showInfo("Otros", auxDB.dietaProteinas.get("otros").toString())
+            showInfo("Otros", auxDB.dietaProteinas.get("otros").toString(), 1)
         }
 
         myDialog.show()
@@ -138,22 +138,22 @@ class FragmentDieta : Fragment(){
 
         val omega3Text: TextView = myDialog.findViewById(R.id.omega3Text)
         omega3Text.setOnClickListener {
-            showInfo("Omega 3 (ácido a- linolénico)", auxDB.dietaGrasas.get("omega 3").toString())
+            showInfo("Omega 3 (ácido a- linolénico)", auxDB.dietaGrasas.get("omega 3").toString(), 2)
         }
 
         val omega6Text: TextView = myDialog.findViewById(R.id.omega6Text)
         omega6Text.setOnClickListener {
-            showInfo("Omega 6 (ácido linoleico)", auxDB.dietaGrasas.get("omega 6").toString())
+            showInfo("Omega 6 (ácido linoleico)", auxDB.dietaGrasas.get("omega 6").toString(), 2)
         }
 
         val saturadaText: TextView = myDialog.findViewById(R.id.saturadaText)
         saturadaText.setOnClickListener {
-            showInfo("Saturadas", auxDB.dietaGrasas.get("saturadas").toString())
+            showInfo("Saturadas", auxDB.dietaGrasas.get("saturadas").toString(), 2)
         }
 
         val transText: TextView = myDialog.findViewById(R.id.transText)
         transText.setOnClickListener {
-            showInfo("Trans", auxDB.dietaGrasas.get("trans").toString())
+            showInfo("Trans", auxDB.dietaGrasas.get("trans").toString(), 2)
         }
 
         myDialog.show()
@@ -170,18 +170,18 @@ class FragmentDieta : Fragment(){
 
         val alcoholText: TextView = myDialog.findViewById(R.id.alcoholText)
         alcoholText.setOnClickListener {
-            showInfo("Alcohol", auxDB.dietaAEvitar.get("alcohol").toString())
+            showInfo("Alcohol", auxDB.dietaAEvitar.get("alcohol").toString(), 3)
         }
 
         val cafeText: TextView = myDialog.findViewById(R.id.cafeText)
         cafeText.setOnClickListener {
-            showInfo("Café", auxDB.dietaAEvitar.get("cafe").toString())
+            showInfo("Café", auxDB.dietaAEvitar.get("cafe").toString(), 3)
         }
 
         myDialog.show()
     }
 
-    private fun showInfo(titulo: String, info: String){
+    private fun showInfo(titulo: String, info: String, i: Int){
         myDialog.setContentView(R.layout.popup_dieta_info)
 
         val closeButton: Button = myDialog.findViewById(R.id.closeInfo)
@@ -197,10 +197,19 @@ class FragmentDieta : Fragment(){
 
         val regresar: Button = myDialog.findViewById(R.id.backInfo)
         regresar.setOnClickListener {
-            showPopUpHidratosDeCarbono()
+            goBack(i)
         }
 
         myDialog.show()
+    }
+
+    fun goBack(i: Int){
+        when (i){
+            0 -> showPopUpHidratosDeCarbono()
+            1 -> showPopUpProteinas()
+            2 -> showPopUpGrasas()
+            3 -> showPopUpAEvitar()
+        }
     }
 
     override fun onCreateView(
