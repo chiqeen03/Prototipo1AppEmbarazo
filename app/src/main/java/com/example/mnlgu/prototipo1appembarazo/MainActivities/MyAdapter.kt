@@ -22,12 +22,14 @@ class MyAdapter(private val myContext: Context, fm: FragmentManager, internal va
             3 -> {
                 return com.example.mnlgu.prototipo1appembarazo.Fragments.FragmentSintomas()
             }
-            4 -> {
+            else -> {
                 return com.example.mnlgu.prototipo1appembarazo.Fragments.FragmentMicronutrimentos()
             }
+            /*
             else -> {
                 return com.example.mnlgu.prototipo1appembarazo.Fragments.FragmentCalendario()
             }
+            */
         }
     }
 

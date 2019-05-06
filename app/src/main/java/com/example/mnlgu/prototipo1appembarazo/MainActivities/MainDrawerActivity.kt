@@ -18,6 +18,7 @@ import com.example.mnlgu.prototipo1appembarazo.R
 import com.example.mnlgu.prototipo1appembarazo.StartActivities.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_main_drawer.*
 import kotlinx.android.synthetic.main.app_bar_main_drawer.*
 import kotlinx.android.synthetic.main.content_main_drawer.*
@@ -73,16 +74,16 @@ class MainDrawerActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
         //tabs and icons here
         //--------------------------------------------------------------------------------------------------------------
-        val icons = arrayOfNulls<Int>(6)
+        val icons = arrayOfNulls<Int>(5)
         icons[0] = R.drawable.bebe
         icons[1] = R.drawable.comida
         icons[2] = R.drawable.ejercicios
         icons[3] = R.drawable.sintomas
         icons[4] = R.drawable.micronutrient
-        icons[5] = R.drawable.calendario
+        //icons[5] = R.drawable.calendario
 
 
-        val adapter = MyAdapter(this, supportFragmentManager, 6)
+        val adapter = MyAdapter(this, supportFragmentManager, 5)
 
         viewPager!!.adapter = adapter
 

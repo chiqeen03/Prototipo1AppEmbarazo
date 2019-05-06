@@ -40,6 +40,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.firebase:firebase-firestore:17.0.1'
     implementation 'com.google.firebase:firebase-auth:16.0.1'
+
+
+    implementation 'com.google.firebase:firebase-messaging:17.0.0'
 }
 
 apply plugin: 'kotlin-android-extensions'
