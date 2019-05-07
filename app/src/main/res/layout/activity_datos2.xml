@@ -83,6 +83,8 @@
                         android:id="@+id/ultimaRegla"/>
                 <ImageButton
                         android:layout_width="wrap_content"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/custom_button2"
                         android:layout_height="wrap_content" app:srcCompat="@drawable/picker"
                         android:id="@+id/calendarButton" android:layout_weight="1"/>
             </LinearLayout>
@@ -93,6 +95,8 @@
             <Button
                     android:text="Crear Usuario"
                     android:layout_width="match_parent"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/custom_button"
                     android:layout_height="wrap_content" android:id="@+id/crearUsuarioButton"/>
         </LinearLayout>
     </ScrollView>

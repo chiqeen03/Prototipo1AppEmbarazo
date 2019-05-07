@@ -77,10 +77,14 @@
         <Button
                 android:text="Cancelar"
                 android:layout_width="wrap_content"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/custom_button5"
                 android:layout_height="wrap_content" android:id="@+id/cancelar" android:layout_weight="1"/>
         <Button
                 android:text="Guardar"
                 android:layout_width="wrap_content"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/custom_button"
                 android:layout_height="wrap_content" android:id="@+id/guardar" android:layout_weight="1"/>
     </LinearLayout>
 
