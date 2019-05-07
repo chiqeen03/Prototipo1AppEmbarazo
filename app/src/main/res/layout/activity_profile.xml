@@ -64,6 +64,8 @@
         <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" app:srcCompat="@drawable/picker"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/custom_button2"
                 android:id="@+id/calendarButton" android:layout_weight="1"/>
     </LinearLayout>
     <LinearLayout

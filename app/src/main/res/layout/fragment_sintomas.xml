@@ -17,6 +17,7 @@
                 android:id="@+id/sintomasTitulo"
                 android:textSize="24dp" android:layout_marginTop="32dp" app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+                android:textStyle="bold"
                 android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"/>
         <LinearLayout
                 android:orientation="vertical"
@@ -39,6 +40,7 @@ Tomar agua también ayuda a hacer las heces más voluminosas y mejora el tránsi
 Por último, te recomendamos estar en movimiento. Hacer actividad física ayuda con los movimientos intestinales.
 "
                     android:layout_width="match_parent"
+                    android:justificationMode="inter_word"
                     android:layout_height="wrap_content" android:id="@+id/estrenimientoInfoText"/>
             <TextView
                     android:text="Acidez"
@@ -50,6 +52,7 @@ Por último, te recomendamos estar en movimiento. Hacer actividad física ayuda 
                     android:text="Es importante no dormir con el estómago vacío pero tampoco cenar de más. Sí la acidez es muy molesta, es recomendable dormir semi acostada.
 "
                     android:layout_width="match_parent"
+                    android:justificationMode="inter_word"
                     android:layout_height="wrap_content" android:id="@+id/acidezInfoText"/>
             <TextView
                     android:text="Naúseas"
@@ -60,6 +63,7 @@ Por último, te recomendamos estar en movimiento. Hacer actividad física ayuda 
             <TextView
                     android:text="Los alimentos salados pueden ayudar a mejorar las náuseas."
                     android:layout_width="match_parent"
+                    android:justificationMode="inter_word"
                     android:layout_height="wrap_content" android:id="@+id/nauseasInfoText"/>
         </LinearLayout>
 
