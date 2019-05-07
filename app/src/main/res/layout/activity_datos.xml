@@ -63,7 +63,10 @@
         <Button
                 android:text="Continuar"
                 android:layout_width="match_parent"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/custom_button"
                 android:layout_height="wrap_content" android:id="@+id/continuarButton"/>
+
 
     </LinearLayout>
 

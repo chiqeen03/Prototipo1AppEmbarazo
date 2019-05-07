@@ -63,6 +63,8 @@
             android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginTop="42dp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/custom_button"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"/>
     <TextView
             android:text="El 20-30% de las calorías que consumes en el día, deben de provenir de las grasas. "

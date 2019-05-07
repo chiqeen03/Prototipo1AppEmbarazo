@@ -63,6 +63,8 @@
             android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" android:layout_marginTop="42dp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/custom_button"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"/>
     <TextView
             android:text="Se recomienda que la mayoría de las calorías de tu dieta (45-65%) provengan de frutas, leguminosas, cereales y granos integrales ya que son la principal fuente de energía para tí y tu bebé."
