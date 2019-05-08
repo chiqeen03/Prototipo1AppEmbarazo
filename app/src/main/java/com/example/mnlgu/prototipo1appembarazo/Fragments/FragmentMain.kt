@@ -320,7 +320,11 @@ class FragmentMain : Fragment(), MutableMapCallback {
         val ultimaRegla = LocalDateTime.parse("" + anioAux + "-" + mesAux + "-" + diaAux + "T00:00:00")
         val hoy = LocalDateTime.now()
 
-        return (Duration.between(hoy, ultimaRegla).toDays().absoluteValue / 7).toInt()
+        if(ultimaRegla < hoy){
+            return (Duration.between(hoy, ultimaRegla).toDays().absoluteValue / 7).toInt()
+        }
+        return 40
+
 
     }
 
