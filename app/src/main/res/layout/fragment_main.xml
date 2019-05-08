@@ -11,14 +11,14 @@
 
         <TextView
                 android:text="Nuestro peso objetivo para este trimestre es:"
-                android:layout_width="296dp"
-                android:layout_height="wrap_content"
+                android:layout_width="363dp"
+                android:layout_height="37dp"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.55"
                 android:textAlignment="center"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:id="@+id/textView3"
                 android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/pesoSemanalText"/>
         <TextView
@@ -26,10 +26,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pesoTrimestralText"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
                 app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
                 app:layout_constraintHorizontal_bias="0.501"
+                android:textStyle="bold"
                 android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView3"/>
         <TextView
                 android:text="Bienvenida"
@@ -39,7 +40,7 @@
                 android:layout_marginTop="24dp"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="1.0"/>
+                android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="1.0" android:textSize="30sp"/>
         <TextView
                 android:text="Nombre"
                 android:gravity="center"
@@ -48,6 +49,7 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/bienvenida" android:layout_marginStart="8dp"
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:textStyle="bold"
                 android:layout_marginEnd="8dp"/>
         <TextView
                 android:text="Estamos en la semana:"
@@ -57,7 +59,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/nameText" app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="96dp"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-                app:layout_constraintHorizontal_bias="0.0"/>
+                app:layout_constraintHorizontal_bias="0.0" android:textSize="18sp"/>
         <TextView
                 android:text="0"
                 android:layout_width="wrap_content"
@@ -65,17 +67,18 @@
                 android:id="@+id/semana" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="116dp"
                 android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/nameText"
                 app:layout_constraintStart_toEndOf="@+id/textView2" android:layout_marginStart="8dp"
-                app:layout_constraintHorizontal_bias="0.0"/>
+                android:textStyle="bold"
+                app:layout_constraintHorizontal_bias="1.0" android:textSize="20sp"/>
         <TextView
                 android:text="Recuerda que la energía es muy importante. Hoy tenemos que consumir:"
-                android:layout_width="296dp"
+                android:layout_width="379dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.55"
                 android:textAlignment="center"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:layout_marginTop="20dp" app:layout_constraintTop_toBottomOf="@+id/textView2"
                 android:id="@+id/textView5"/>
         <TextView
@@ -83,22 +86,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/caloriasText"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
                 app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/textView5"
+                android:textStyle="bold"
                 app:layout_constraintHorizontal_bias="0.501"/>
 
         <TextView
                 android:text="Nuestro peso objetivo para esta semana es:"
-                android:layout_width="296dp"
+                android:layout_width="361dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.55"
                 android:textAlignment="center"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:id="@+id/textView6" android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@+id/caloriasText"/>
 
@@ -107,10 +111,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pesoSemanalText"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
                 app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
                 app:layout_constraintHorizontal_bias="0.501" android:layout_marginTop="8dp"
+                android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/textView6"/>
         <Button
                 android:text="Ver bebé"
